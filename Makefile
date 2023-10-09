@@ -1,17 +1,32 @@
+MANAGE := poetry run python manage.py
+
+.PHONY: install
 install:
 	poetry install
 
-build:
-	./build.sh
+.PHONY: setup
+setup:	install migrate
 
+.PHONY: migrate
 migrate:
-	poetry run python manage.py migrate
+	$(MANAGE) migrate
 
-start:
-	poetry run python manage.py runserver
+.PHONY: prod
+prod:
+	poetry run gunicorn task_manager.wsgi:application
 
+.PHONY: dev
+dev:
+	$(MANAGE) runserver
+
+.PHONY: shell
 shell:
-	poetry run python manage.py shell_plus
+	$(MANAGE) shell_plus
 
+.PHONY: test
 test:
-	poetry run python manage.py test
+	$(MANAGE) test
+
+.PHONY: lint
+lint:
+	poetry run flake8 task_manager

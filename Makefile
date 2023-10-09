@@ -1,7 +1,11 @@
+include .env
+
+HOST ?= 127.0.0.1
+PORT ?= 8000
+WEB_CONCURRENCY ?= 4
+
 MANAGE := poetry run python manage.py
-HOST :=  127.0.0.1
-PORT := 8000
-WEB_CONCURRENCY := 4
+
 
 .PHONY: install
 install:

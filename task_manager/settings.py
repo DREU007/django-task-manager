@@ -32,10 +32,13 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
+LOCAL_HOST = os.getenv('HOST')
+
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'webserver',
+    LOCAL_HOST,
 ]
 
 EXTERNAL_HOSTNAME = os.getenv('EXTERNAL_HOSTNAME')

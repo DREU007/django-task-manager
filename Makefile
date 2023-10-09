@@ -1,4 +1,7 @@
 MANAGE := poetry run python manage.py
+HOST :=  127.0.0.1
+PORT := 8000
+WEB_CONCURRENCY := 4
 
 .PHONY: install
 install:
@@ -13,7 +16,7 @@ migrate:
 
 .PHONY: prod
 prod:
-	poetry run gunicorn task_manager.wsgi:application
+	poetry run gunicorn -w $(WEB_CONCURRENCY) -b $(HOST):$(PORT) task_manager.wsgi:application
 
 .PHONY: dev
 dev:

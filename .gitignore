@@ -1,3 +1,6 @@
+# Bootstrap Templates
+task_manager/templates/bootstrap/
+
 # Vim
 *.swp
 *.swo

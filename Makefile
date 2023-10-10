@@ -12,11 +12,15 @@ install:
 	poetry install
 
 .PHONY: setup
-setup:	install migrate
+setup:	install static migrate
 
 .PHONY: migrate
 migrate:
 	$(MANAGE) migrate
+
+.PHONY: static
+static:
+	$(MANAGE) collectstatic --no-input
 
 .PHONY: prod
 prod:

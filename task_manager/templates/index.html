@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 
 <!doctype html>
@@ -10,7 +11,8 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.118.2">
     <title>
-	{% block 'title' %}Task Manager{% endblock %}
+	{% translate 'Task Manager' as the_title %}	
+	{% block 'title' %}{{ the_title }}{% endblock %}
     </title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cover/">
@@ -160,7 +162,7 @@
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="mb-auto">
     <div>
-      <h3 class="float-md-start mb-0">Task Manager</h3>
+	<h3 class="float-md-start mb-0">{{ the_title }}</h3>
       <nav class="nav nav-masthead justify-content-center float-md-end">
 	  <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="{% url 'index' %}">Home</a>
         <a class="nav-link fw-bold py-1 px-0" href="#">Users</a>

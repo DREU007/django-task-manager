@@ -1,9 +1,14 @@
+{% load django_bootstrap5 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
 {% load i18n %}
 {% load static %}
 
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
-    <head><script src="{% static 'bootstrap/js/color-modes.js' %}"></script>
+    <head><script src="{% static 'cover/color-modes.js' %}"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +26,6 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -186,7 +190,6 @@
     <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
   </footer>
 </div>
-<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
     </body>
 </html>

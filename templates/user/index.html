@@ -1,9 +1,31 @@
 {% extends 'index.html' %}
 
+{% load django_bootstrap5 %}
+{% load i18n %}
+
 {% block 'content' %}
-<ul>
-  {% for user in users %}
-    <li>{{ user }}</li>  
-  {% endfor %}
+<h1>{% translate 'Users' %}</h1>
+<table class="table">
+	<tr>
+		<th>ID</th>
+		<th>{% translate 'User name' %}</th>
+		<th>{% translate 'Full name' %}</th>
+		<th>{% translate 'Created at' %}</th>
+		<th></th>
+	</tr>
+	{% for user in users %}
+	<tr>
+		<td>{{ user.id }}</td>
+		<td>{{ user.username }}</td>
+		<td>{{ user.first_name }} {{ user.last_name }}</td>
+		<td>{{ user.date_joined }}</td>
+		<td>
+			{#% url 'user_update' user.id %#}
+			<br>
+			{#% url 'user_delete' user.id %#}
+		</td>
+	</tr>
+	{% endfor %}
+</table>
 </ul>
 {% endblock %}

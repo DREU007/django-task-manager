@@ -22,7 +22,7 @@
 		<td>
 			<a href="{% url 'user_update' user.id %}">{% translate 'Update' %}</a>
 			<br>
-			{#% url 'user_delete' user.id %#}
+			<a href="{% url 'user_delete' user.id %}">{% translate 'Delete' %}</a>
 		</td>
 	</tr>
 	{% endfor %}

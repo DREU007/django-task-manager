@@ -58,3 +58,17 @@ class UserUpdateView(View):
             {'form': form, 'user_id': user_id}
         )
 
+class UserDeleteView(View):
+    """User delete page view."""
+
+    def get(self, request, *args, **kwargs):
+        """Render delete user template."""
+        user = get_object_or_404(User, pk=kwargs.get('pk'))
+        return render(request, 'user/delete.html', {'user': user})
+
+    def post(self, request, *args, **kwargs):
+        """Delete user."""
+        # flash_msg
+        user = get_object_or_404(User, pk=kwargs.get('pk'))
+        user.delete()
+        return redirect('users_index')

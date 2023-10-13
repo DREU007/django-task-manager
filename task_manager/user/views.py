@@ -17,6 +17,6 @@ class UserCreateView(View):
     """User create view."""
 
     def get(self, request, *args, **kwargs):
-        """Return registration form."""
-        form = UserCreationForm()
+        """Return an user creation form."""
+        form = forms.CustomUserCreationForm()
         return render(request, 'user/form.html', {'form': form})

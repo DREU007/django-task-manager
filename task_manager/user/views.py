@@ -17,13 +17,13 @@ class UserCreateView(View):
     """User create page view."""
 
     def get(self, request, *args, **kwargs):
-        """Return an user creation form."""
+        """Return a user creation form."""
         form = forms.CustomUserCreationForm()
         return render(request, 'user/create.html', {'form': form})
 
-    def post(self, requst, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         """Create a new user."""
-        form = forms.CustomUserCreationForm(requst.POST)
+        form = forms.CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('users_index')
@@ -34,10 +34,10 @@ class UserUpdateView(View):
     """User update page view."""
 
     def get(self, request, *args, **kwargs):
-        """Return an user data filled form."""
+        """Return a user data filled form."""
         user_id = kwargs.get('pk')
         user = get_object_or_404(User, pk=user_id)
-        form = forms.CustomUserChangeForm(instance=user)
+        form = forms.CustomUserChangeForm(user=user, instance=user)
         return render(
             request,
             'user/update.html',
@@ -45,10 +45,10 @@ class UserUpdateView(View):
         )
 
     def post(self, request, *args, **kwargs):
-        """Update an user data."""
+        """Update a user data."""
         user_id = kwargs.get('pk')
         user = get_object_or_404(User, pk=user_id)
-        form = forms.CustomUserChangeForm(request.POST, instance=user)
+        form = forms.CustomUserChangeForm(user=user, data=request.POST, instance=user)
         if form.is_valid():
             form.save()
             return redirect('users_index')

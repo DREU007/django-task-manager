@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from . import forms
 
 
@@ -93,3 +93,9 @@ class UserLoginView(View):
             login(request, user)
             return redirect('users_index')
         return render(request, 'user/login.html', {"form": form})
+
+class UserLogoutView(View):
+    def post(self, request, *args, **kwargs):
+        """Log out a user."""
+        logout(request)
+        return redirect('index')

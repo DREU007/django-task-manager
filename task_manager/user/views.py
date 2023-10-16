@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login
 from . import forms
 
 
@@ -58,6 +60,7 @@ class UserUpdateView(View):
             {'form': form, 'user_id': user_id}
         )
 
+
 class UserDeleteView(View):
     """User delete page view."""
 
@@ -72,3 +75,21 @@ class UserDeleteView(View):
         user = get_object_or_404(User, pk=kwargs.get('pk'))
         user.delete()
         return redirect('users_index')
+
+
+class UserLoginView(View):
+    """User login page view."""
+
+    def get(self, request, *args, **kwargs):
+        """Render user login template."""
+        form = AuthenticationForm()
+        return render(request, 'user/login.html', {"form": form})
+
+    def post(self, request, *args, **kwargs):
+        """Log in a user."""
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('users_index')
+        return render(request, 'user/login.html', {"form": form})

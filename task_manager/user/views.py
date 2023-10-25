@@ -3,6 +3,9 @@ from django.views import View
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.views import LoginView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 from . import forms
 
 
@@ -77,22 +80,12 @@ class UserDeleteView(View):
         return redirect('users_index')
 
 
-class UserLoginView(View):
+class UserLoginView(SuccessMessageMixin, LoginView):
     """User login page view."""
-
-    def get(self, request, *args, **kwargs):
-        """Render user login template."""
-        form = AuthenticationForm()
-        return render(request, 'user/login.html', {"form": form})
-
-    def post(self, request, *args, **kwargs):
-        """Log in a user."""
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('users_index')
-        return render(request, 'user/login.html', {"form": form})
+    template_name = 'user/login.html'
+    next_page = reverse_lazy('users_index')
+    success_url = reverse_lazy('users_index')
+    success_message = "Yes!" # translate
 
 class UserLogoutView(View):
     def post(self, request, *args, **kwargs):

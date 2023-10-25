@@ -13,6 +13,7 @@
 		<th>{% translate 'Created at' %}</th>
 		<th></th>
 	</tr>
+	{% if users %}
 	{% for user in users %}
 	<tr>
 		<td>{{ user.id }}</td>
@@ -26,5 +27,6 @@
 		</td>
 	</tr>
 	{% endfor %}
+	{% endif %}
 </table>
 {% endblock %}

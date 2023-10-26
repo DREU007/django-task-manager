@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.views import LoginView
-from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from . import forms
 
@@ -31,6 +30,7 @@ class UserCreateView(View):
         form = forms.CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Success!')
             return redirect('users_index')
         return render(request, 'user/create.html', {'form': form}) 
 
@@ -78,17 +78,3 @@ class UserDeleteView(View):
         user = get_object_or_404(User, pk=kwargs.get('pk'))
         user.delete()
         return redirect('users_index')
-
-
-class UserLoginView(SuccessMessageMixin, LoginView):
-    """User login page view."""
-    template_name = 'user/login.html'
-    next_page = reverse_lazy('users_index')
-    success_url = reverse_lazy('users_index')
-    success_message = "Yes!" # translate
-
-class UserLogoutView(View):
-    def post(self, request, *args, **kwargs):
-        """Log out a user."""
-        logout(request)
-        return redirect('index')

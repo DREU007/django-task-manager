@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from django.contrib import messages
 from django.urls import reverse_lazy
+from django.utils.translation import gettext as _
 from . import forms
 
 
@@ -30,13 +31,15 @@ class UserCreateView(View):
         form = forms.CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Success!')
+            msg_text = _('User is successfully created')
+            messages.success(request, msg_text) 
             return redirect('users_index')
         return render(request, 'user/create.html', {'form': form}) 
 
 
-class UserUpdateView(View):
+class UserUpdateView(LoginRequiredMixin, View):
     """User update page view."""
+    login_url = reverse_lazy('login')
 
     def get(self, request, *args, **kwargs):
         """Return a user data filled form."""
@@ -56,6 +59,8 @@ class UserUpdateView(View):
         form = forms.CustomUserChangeForm(user=user, data=request.POST, instance=user)
         if form.is_valid():
             form.save()
+            msg_text = _('User is successfully updated')
+            messages.success(request, msg_text)
             return redirect('users_index')
         return render(
             request,
@@ -64,8 +69,10 @@ class UserUpdateView(View):
         )
 
 
-class UserDeleteView(View):
+class UserDeleteView(LoginRequiredMixin, View):
     """User delete page view."""
+    login_url = reverse_lazy('login')
+
 
     def get(self, request, *args, **kwargs):
         """Render delete user template."""
@@ -74,7 +81,8 @@ class UserDeleteView(View):
 
     def post(self, request, *args, **kwargs):
         """Delete user."""
-        # flash_msg
         user = get_object_or_404(User, pk=kwargs.get('pk'))
         user.delete()
+        msg_text = _('User is successfully deleted')
+        messages.success(request, msg_text) 
         return redirect('users_index')

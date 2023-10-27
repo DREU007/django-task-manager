@@ -34,6 +34,10 @@ shell:
 test:
 	$(MANAGE) test
 
+.PHONY: makemessages 
+makemessages:
+	django-admin makemessages -l ru
+
 .PHONY: lint
 lint:
 	poetry run flake8 task_manager

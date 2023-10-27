@@ -20,6 +20,7 @@ from django.urls import path, include, reverse_lazy
 from . import views
 
 urlpatterns = [
+    path('i18n/', include('django.conf.urls.i18n')),
     path('', views.IndexView.as_view(), name='index'),
     path(
         'login/',

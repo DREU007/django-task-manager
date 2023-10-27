@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 16:29+0400\n"
+"POT-Creation-Date: 2023-10-27 20:25+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,21 +32,45 @@ msgstr "Пользователь успешно изменен"
 msgid "User is successfully deleted"
 msgstr "Пользователь успешно удален"
 
-#: task_manager/views.py:19
+#: task_manager/views.py:22
 msgid "You are logged in"
 msgstr "Вы залогинены"
 
-#: templates/index.html:21
+#: templates/components/language_switcher.html:8
+msgid "Language"
+msgstr "Язык"
+
+#: templates/components/navbar.html:6 templates/index.html:9
 msgid "Task Manager"
 msgstr "Менеджер задач"
 
-#: templates/index.html:178
+#: templates/components/navbar.html:13
+msgid "Home"
+msgstr "Главная"
+
+#: templates/components/navbar.html:16 templates/user/index.html:7
+msgid "Users"
+msgstr "Пользователи"
+
+#: templates/components/navbar.html:20
 msgid "Sign In"
 msgstr "Вход"
 
-#: templates/index.html:180
+#: templates/components/navbar.html:23
 msgid "Sign Up"
 msgstr "Регистрация"
+
+#: templates/components/navbar_logged.html:8
+msgid "Status"
+msgstr "Статус"
+
+#: templates/components/navbar_logged.html:9
+msgid "Tags"
+msgstr "Теги"
+
+#: templates/components/navbar_logged.html:10
+msgid "Tasks"
+msgstr "Задачи"
 
 #: templates/user/create.html:7 templates/user/create.html:14
 msgid "Register"
@@ -67,10 +91,6 @@ msgstr "Вы уверены, что хотите удалить\t%(first_name)s 
 #: templates/user/delete.html:18
 msgid "Yes, delete"
 msgstr "Да, удалить"
-
-#: templates/user/index.html:7
-msgid "Users"
-msgstr "Пользователи"
 
 #: templates/user/index.html:11
 msgid "User name"

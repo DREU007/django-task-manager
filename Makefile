@@ -36,7 +36,11 @@ test:
 
 .PHONY: makemessages 
 makemessages:
-	django-admin makemessages -l ru
+	poetry run django-admin makemessages -l ru
+
+.PHONY: compilemessages
+compilemessages:
+	poetry run django-admin compilemessages
 
 .PHONY: lint
 lint:

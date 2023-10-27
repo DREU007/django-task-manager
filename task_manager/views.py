@@ -1,14 +1,17 @@
 from django.views import View
-from django.shortcuts import render, reverse
-from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.utils import lazy_gettext as _
+
+from django.utils.translation import gettext_lazy as _
+from django.shortcuts import render
+from django.urls import reverse_lazy
 
 
 class IndexView(View):
-    """Root index view."""
+    """Root index view for Anonumus and Logged user."""
     def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return render(request, 'logged_index.html')
         return render(request, 'index.html')
 
 

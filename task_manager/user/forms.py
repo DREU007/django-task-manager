@@ -12,9 +12,16 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserChangeForm(PasswordChangeForm, ModelForm):
-    """A form that changes a user data."""
+    """
+    A form that changes a user data.
+    """
     
     def __init__(self, *, user, **kwargs):
+        """
+        Initialize parrent classes.
+
+        Positional args are avoided, cause user has to be specified first.
+        """
         super().__init__(user, **kwargs)
 
     field_order = [

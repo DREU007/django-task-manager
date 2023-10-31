@@ -34,8 +34,13 @@ shell:
 test:
 	$(MANAGE) test
 
+.PHONY: coverage
+coverage:
+	poetry run coverage run manage.py test task_manager/user -v 2
+
 .PHONY: makemessages 
 makemessages:
+	# Use compilemessages when updated translation
 	poetry run django-admin makemessages -l ru
 
 .PHONY: compilemessages

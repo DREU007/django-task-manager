@@ -88,13 +88,6 @@ class UserRUDTest(TestCase):
         """Set initial condition for each test method."""  
         self.client = Client()
         self.data = {
-            'user_create': {
-                'username': 'tota',
-                'first_name': 'Tota',
-                'last_name': 'Totavich',
-                'password1': 'adminadmin',
-                'password2': 'adminadmin',
-            },
             'user': {
                 'username': 'tota',
                 'first_name': 'Tota',
@@ -106,8 +99,8 @@ class UserRUDTest(TestCase):
                 'first_name': 'Dada',
                 'last_name': 'Dadavich',
                 'old_password': 'adminadmin',
-                'password1': 'adminadmin',
-                'password2': 'adminadmin',
+                'new_password1': 'adminadmin',
+                'new_password2': 'adminadmin',
             },
         }
 
@@ -126,23 +119,20 @@ class UserRUDTest(TestCase):
 
     def test_update_user(self):
         """Test user update data."""
-        user_data = self.data['user_create']
-        create_url = reverse('user_create')
-        response = self.client.post(create_url, user_data)
-
         user = self.data['user']
+        user_updated = self.data['user_updated']
+
+        new_user = User.objects.create_user(**user)
+
         login_url = reverse('login')
         login_response = self.client.post(
             login_url, {
-                'username': self.data['user']['username'],
-                'password': self.data['user']['password']
+                'username': user['username'],
+                'password': user['password']
             }
         )
-        self.assertEqual(login_response.is_authenticated, True)
 
-        new_user = User.objects.last()
         url = reverse('user_update', kwargs={'pk': new_user.pk})
-        user_updated = self.data['user_updated'] 
         response = self.client.post(url, user_updated)
 
         updated_user = User.objects.get(pk=new_user.pk) 

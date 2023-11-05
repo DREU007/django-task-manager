@@ -44,6 +44,13 @@ class UserUpdateView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         """Return a user data filled form."""
         user_id = kwargs.get('pk')
+        # It's better to make mixin with method Permit denied
+        logged_user = request.user
+        if logged_user.pk != user_id:
+            msg_text = _("You don't have permition to change other user.")
+            messages.error(request, msg_text)
+            return redirect('users_index')
+
         user = get_object_or_404(User, pk=user_id)
         form = forms.CustomUserChangeForm(user=user, instance=user)
         return render(

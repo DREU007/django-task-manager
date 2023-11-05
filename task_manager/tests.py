@@ -5,6 +5,7 @@ import unittest
 from selenium import webdriver
 
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from task_manager.user.forms import CustomUserCreationForm
 
 
@@ -139,3 +140,20 @@ class UserRUDTest(TestCase):
         self.assertEqual(user_updated['username'], updated_user.username)
         self.assertEqual(user_updated['first_name'], updated_user.first_name)
         self.assertEqual(user_updated['last_name'], updated_user.last_name)
+
+    def test_delete_user(self):
+        """Test user delete."""
+        user_data = self.data['user']
+        user = User.objects.create_user(**user_data)
+
+        login_url = reverse('login')
+        login_response = self.client.post(
+            login_url, {
+                'username': user_data['username'],
+                'password': user_data['password']
+            }
+
+        url = reverse('user_delete', kwargs={'pk': user.pk})
+        response = self.client.post(url)
+        with self.assertRaises(ObjectDoesNotExist):
+            User.objects.get(pk=user.pk)

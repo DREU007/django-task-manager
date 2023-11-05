@@ -12,15 +12,11 @@ install:
 	poetry install
 
 .PHONY: setup
-setup:	install static migrate
+setup:	install migrate
 
 .PHONY: migrate
 migrate:
 	$(MANAGE) migrate
-
-.PHONY: static
-static:
-	$(MANAGE) collectstatic --no-input
 
 .PHONY: prod
 prod:
@@ -37,6 +33,19 @@ shell:
 .PHONY: test
 test:
 	$(MANAGE) test
+
+.PHONY: coverage
+coverage:
+	poetry run coverage run manage.py test task_manager/user -v 2
+
+.PHONY: makemessages 
+makemessages:
+	# Use compilemessages when updated translation
+	poetry run django-admin makemessages -l ru
+
+.PHONY: compilemessages
+compilemessages:
+	poetry run django-admin compilemessages
 
 .PHONY: lint
 lint:

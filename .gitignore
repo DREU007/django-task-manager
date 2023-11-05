@@ -1,5 +1,9 @@
+# Coverage
+**/htmlcov
+# PyEnv
+.python-version
 # Bootstrap Templates
-task_manager/templates/bootstrap/
+**/templates/bootstrap/
 
 # Vim
 *.swp

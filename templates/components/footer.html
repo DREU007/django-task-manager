@@ -1,0 +1,10 @@
+{% load django_bootstrap5 i18n static %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<div class="navbar nav-masthead justify-content-center border-top">
+		<a href="https://github.com/DREU007/django-task-manager" class="nav-link fw-bold px-1 py-0">GitHub</a>
+		<a href="https://ru.hexlet.io" class="nav-link fw-bold px-1 py-0">Hexlet</a>
+		{% include 'components/language_switcher.html' %}
+</div>

@@ -1,0 +1,27 @@
+{% load django_bootstrap5 i18n static %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% translate 'Task Manager' as the_title %}	
+
+<div>
+	<h3 class="float-md-start mb-0">{{ the_title }}</h3>
+	<nav class="nav nav-masthead justify-content-center float-md-end">
+		<!-- TODO: Figure out how to switch active page -->
+		<a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="{% url 'index' %}">
+			{% trans 'Home' %}
+		</a>
+		<a class="nav-link fw-bold py-1 px-0" href="{% url 'users_index' %}">
+			{% trans 'Users' %}
+		</a>
+		{% block navbar %}
+			<a class="nav-link fw-bold py-1 px-0" href="{% url 'login' %}">
+				{% trans 'Sign In' %}
+			</a>
+			<a class="nav-link fw-bold py-1 px-0" href="{% url 'user_create' %}">
+				{% trans 'Sign Up' %}
+			</a>
+		{% endblock %}
+	</nav>
+</div>

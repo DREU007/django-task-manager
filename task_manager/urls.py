@@ -15,10 +15,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.contrib.auth.views import LogoutView
+from django.urls import path, include, reverse_lazy
 from . import views
 
 urlpatterns = [
-    path('', views.IndexView.as_view(), name="index"),
+    path('i18n/', include('django.conf.urls.i18n')),
+    path('', views.IndexView.as_view(), name='index'),
+    path(
+        'login/',
+        views.CustomLoginView.as_view(),
+        name='login'
+    ),
+    path(
+        'logout/',
+        LogoutView.as_view(next_page=reverse_lazy('users_index')),
+        name='logout'
+    ),
+    path('users/', include('task_manager.user.urls')),
     path('admin/', admin.site.urls),
 ]

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load django_bootstrap5 i18n static %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block title %}
+	{% translate 'Task Manager' as the_title %}	
+	{{ the_title }}
+{% endblock %}
+
+{% block include_navbar %}
+	{% include 'components/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+	<h1>{{ the_title }}</h1>
+{% endblock %}
+
+{% block footer %}
+	{% include 'components/footer.html' %}
+{% endblock %}

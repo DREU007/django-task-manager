@@ -9,10 +9,10 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import os
 
 from pathlib import Path
 from distutils.util import strtobool
-import os
 
 import dj_database_url
 from dotenv import load_dotenv
@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'django_bootstrap5',
+    'task_manager',
+    'task_manager.user',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +81,7 @@ ROOT_URLCONF = 'task_manager.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'task_manager' / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -97,15 +99,23 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-DATABASE_URL = os.getenv('DATABASE_URL') 
-
 DATABASES = {
     'default': dj_database_url.config(
-        default=DATABASE_URL,
+        default=os.getenv(
+            'DATABASE_URL',
+            'postgresql://postgres:postgres@localhost:5432/postgres'
+        ),
         conn_max_age=600
     )
 }
 
+SQLITE_SETTINGS = {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': BASE_DIR / 'db.sqlite3',
+}
+
+if os.getenv('DB_ENGINE') == 'SQLite':
+    DATABASES['default'] = SQLITE_SETTINGS
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -128,16 +138,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
+LANGUAGE_CODE = 'en-us'
 
 LANGUAGES = [ 
-    ('en-us', 'English'),
+    ('en', 'English'),
     ('ru', 'Russian'),
 ]
 
-LANGUAGE_CODE = 'en-us'
-
 LOCALE_PATHS = [
-    BASE_DIR / 'task_manager' / 'locale',
+    BASE_DIR / 'locale',
 ]
 
 TIME_ZONE = 'UTC'
@@ -150,9 +159,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATIC_ROOT = BASE_DIR / 'task_manager' / 'staticfiles'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Default primary key field type

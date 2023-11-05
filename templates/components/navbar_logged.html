@@ -1,0 +1,17 @@
+{% extends 'components/navbar.html' %}
+{% load django_bootstrap5 i18n static %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block navbar %}
+	<a class="nav-link fw-bold py-1 px-0" href="#">{% trans 'Status' %}</a>
+	<a class="nav-link fw-bold py-1 px-0" href="#">{% trans 'Tags' %}</a>
+	<a class="nav-link fw-bold py-1 px-0" href="#">{% trans 'Tasks' %}</a>
+	<form action="{% url 'logout' %}" method="post" class="nav-link fw-bold py-1 px-0">
+		{% csrf_token %}
+		{% url 'sign_out' as sign_out_link %}
+		{% trans 'Exit' as exit %}
+		{% bootstrap_button exit button_type="submit" button_class="nav-link m-0 p-0" %}
+	</form>
+{% endblock %}

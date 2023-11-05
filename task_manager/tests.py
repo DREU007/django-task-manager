@@ -88,24 +88,33 @@ class UserRUDTest(TestCase):
         """Set initial condition for each test method."""  
         self.client = Client()
         self.data = {
-            'user1': {
+            'user_create': {
+                'username': 'tota',
+                'first_name': 'Tota',
+                'last_name': 'Totavich',
+                'password1': 'adminadmin',
+                'password2': 'adminadmin',
+            },
+            'user': {
                 'username': 'tota',
                 'first_name': 'Tota',
                 'last_name': 'Totavich',
                 'password': 'adminadmin',
             },
-            'user2': {
+            'user_updated': {
                 'username': 'dada',
                 'first_name': 'Dada',
                 'last_name': 'Dadavich',
-                'password': 'adminadmin',
+                'old_password': 'adminadmin',
+                'password1': 'adminadmin',
+                'password2': 'adminadmin',
             },
         }
 
     def test_read_user(self):
         """Test user present on view."""
         url = reverse('users_index')
-        user = self.data['user1']
+        user = self.data['user']
         User.objects.create(**user)
 
         response = self.client.get(url)
@@ -117,14 +126,26 @@ class UserRUDTest(TestCase):
 
     def test_update_user(self):
         """Test user update data."""
-        user = self.data['user1']
-        user_updated = self.data['user2'] 
-        
-        new_user = User.objects.create(**user)
-        url = reverse('user_update', 'pk'=new_user.pk)
+        user_data = self.data['user_create']
+        create_url = reverse('user_create')
+        response = self.client.post(create_url, user_data)
 
+        user = self.data['user']
+        login_url = reverse('login')
+        login_response = self.client.post(
+            login_url, {
+                'username': self.data['user']['username'],
+                'password': self.data['user']['password']
+            }
+        )
+        self.assertEqual(login_response.is_authenticated, True)
+
+        new_user = User.objects.last()
+        url = reverse('user_update', kwargs={'pk': new_user.pk})
+        user_updated = self.data['user_updated'] 
         response = self.client.post(url, user_updated)
-        
-        self.assertEqual(user_updated['username'], new_user.username)
-        self.assertEqual(user_updated['first_name'], new_user.first_name)
-        self.assertEqual(user_updated['last_name'], new_user.last_name)
+
+        updated_user = User.objects.get(pk=new_user.pk) 
+        self.assertEqual(user_updated['username'], updated_user.username)
+        self.assertEqual(user_updated['first_name'], updated_user.first_name)
+        self.assertEqual(user_updated['last_name'], updated_user.last_name)

@@ -33,5 +33,6 @@ urlpatterns = [
         name='logout'
     ),
     path('users/', include('task_manager.user.urls')),
+    path('status/', include('task_manager.status.urls')),
     path('admin/', admin.site.urls),
 ]

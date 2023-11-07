@@ -13,3 +13,5 @@ class Status(models.Model):
             "unique": _("Task status with such Name already exist."),
         }
     )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

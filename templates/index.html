@@ -11,7 +11,11 @@
 {% endblock %}
 
 {% block include_navbar %}
-	{% include 'components/navbar.html' %}
+	{% if user.is_authenticated %}
+		{% include 'components/navbar_logged.html' %}
+	{% else %}
+		{% include 'components/navbar.html' %}
+	{% endif %}
 {% endblock %}
 
 {% block content %}

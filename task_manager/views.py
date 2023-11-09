@@ -10,8 +10,6 @@ from django.urls import reverse_lazy
 class IndexView(View):
     """Root index view for Anonumus and Logged user."""
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return render(request, 'logged_index.html')
         return render(request, 'index.html')
 
 

@@ -1,7 +1,12 @@
-from django.shortcuts import render, reverse, redirect, get_object_or_404
+from django.shortcuts import (
+    render,
+    redirect,
+    get_object_or_404
+)
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 
 from .models import Status 
@@ -9,7 +14,7 @@ from .forms import StatusForm
 
 class StatusIndexView(LoginRequiredMixin, View):
     """Index statuses view."""
-    # login_url = reverse('login')
+    login_url = reverse_lazy('login')
     template = 'status/index.html'
 
     def get(self, request, *args, **kwargs):
@@ -21,6 +26,7 @@ class StatusIndexView(LoginRequiredMixin, View):
 class StatusCreateView(LoginRequiredMixin, View):
     """Create status view."""
     template = 'status/create.html'
+    login_url = reverse_lazy('login')
 
     def get(self, request, *args, **kwargs):
         """Render create status form template."""
@@ -41,6 +47,7 @@ class StatusCreateView(LoginRequiredMixin, View):
 class StatusUpdateView(LoginRequiredMixin, View):
     """Update status view."""
     template = 'status/update.html'
+    login_url = reverse_lazy('login')
 
     def get(self, request, *args, **kwargs):
         """Render update status form."""
@@ -68,6 +75,7 @@ class StatusUpdateView(LoginRequiredMixin, View):
 class StatusDeleteView(LoginRequiredMixin, View):
     """Delete status view."""
     template = 'status/delete.html'
+    login_url = reverse_lazy('login')
 
     def get(self, request, *args, **kwargs):
         """Render delete status form."""

@@ -135,7 +135,7 @@ class UserRUDTest(TestCase):
                 'username': user_data['username'],
                 'password': user_data['password']
             }
-
+        )
         url = reverse('user_delete', kwargs={'pk': user.pk})
         response = self.client.post(url)
         with self.assertRaises(ObjectDoesNotExist):

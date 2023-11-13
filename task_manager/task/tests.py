@@ -3,44 +3,68 @@ from django.shortcuts import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 
+from task_manager.status.models import Status
 from .models import Task
 
 
 class TaskCRUDTest(TestCase):
     """Tests for task CRUD operation."""
-    user_data = {
-        'username': 'tota',
-        'first_name': 'Tota',
-        'last_name': 'Totavich',
-        'password': 'adminadmin',
-    }
+
+    @classmethod
+    def setUpTestData(cls):
+        """Set up data for tests."""
+        cls.client = Client()
+        user_data = {
+            'user1': {
+                'username': 'tota',
+                'first_name': 'Tota',
+                'last_name': 'Totavich',
+                'password': 'adminadmin',
+            },
+            'user2': {
+                'username': 'dada',
+                'first_name': 'Dada',
+                'last_name': 'Dadavich',
+                'password': 'adminadmin',
+            },
+        }
+
+        cls.author = User.objects.create_user(**user_data['user1'])
+        cls.executor = User.objects.create_user(**user_data['user2'])
+
+        login_url = reverse('login')
+        cls.client.post(
+            login_url,
+            {
+                'username': user_data['user1']['username'],
+                'password': user_data['user2']['password']
+            }
+        )
+
+        status_data = {
+            'create': {'name': 'Example status'},
+            'update': {'name': 'Updated status'},
+        }
+        cls.status1 = Status.objects.create(**status_data['create'])
+        cls.status2 = Status.objects.create(**status_data['update'])
 
     def setUp(self):
         """Set up test enviroment and login user."""
-        self.client = Client()
+
         self.data = {
             'create': {
                 'name': 'Example task',
                 'description': 'This is example task',
-                'status': 1,
-                'executor': 1,
+                'status': self.status1,
+                'executor': self.author,
             },
             'update': {
                 'name': 'Updated task',
                 'description': 'This is updated task',
-                'status': 2,
-                'executor': 2,
+                'status': self.status2,
+                'executor': self.executor,
             },
         }
-        User.objects.create_user(**self.user_data)
-        login_url = reverse('login')
-        self.client.post(
-            login_url,
-            {
-                'username': self.user_data['username'],
-                'password': self.user_data['password']
-            }
-        )
 
     def test_create_task(self):
         """Test task creation on POST."""

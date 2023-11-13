@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Status(models.Model):
-    """Task status one-to-many tasks.""" 
+    """Task status one-to-many tasks."""
     name = models.CharField(
         _("name"),
         max_length=255,
@@ -22,3 +22,6 @@ class Status(models.Model):
         _('Updated at'),
         auto_now=True,
     )
+
+    def __str__(self):
+        return self.name

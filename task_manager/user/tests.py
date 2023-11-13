@@ -8,9 +8,9 @@ from task_manager.user.forms import CustomUserCreationForm
 
 class UserCreateTest(TestCase):
     """Test user creation operations."""
-    
+
     def setUp(self):
-        """Set initial condition for each test method."""  
+        """Set initial condition for each test method."""
         self.client = Client()
         self.data = {
             'user1': {
@@ -58,7 +58,7 @@ class UserCreateTest(TestCase):
         """Test user creation on post."""
         url = reverse('user_create')
         user = self.data['user1']
-        response = self.client.post(url, user)
+        self.client.post(url, user)
         new_user = User.objects.last()
         self.assertEqual(user['username'], new_user.username)
         self.assertEqual(user['first_name'], new_user.first_name)
@@ -69,7 +69,7 @@ class UserRUDTest(TestCase):
     """Test user read, update, delete operations."""
 
     def setUp(self):
-        """Set initial condition for each test method."""  
+        """Set initial condition for each test method."""
         self.client = Client()
         self.data = {
             'user': {
@@ -97,9 +97,9 @@ class UserRUDTest(TestCase):
         response = self.client.get(url)
         response_text = response.content.decode('utf-8')
 
-        self.assertIn(user['username'], response_text) 
-        self.assertIn(user['first_name'], response_text) 
-        self.assertIn(user['last_name'], response_text) 
+        self.assertIn(user['username'], response_text)
+        self.assertIn(user['first_name'], response_text)
+        self.assertIn(user['last_name'], response_text)
 
     def test_update_user(self):
         """Test user update data."""
@@ -109,7 +109,7 @@ class UserRUDTest(TestCase):
         new_user = User.objects.create_user(**user)
 
         login_url = reverse('login')
-        login_response = self.client.post(
+        self.client.post(
             login_url, {
                 'username': user['username'],
                 'password': user['password']
@@ -117,9 +117,9 @@ class UserRUDTest(TestCase):
         )
 
         url = reverse('user_update', kwargs={'pk': new_user.pk})
-        response = self.client.post(url, user_updated)
+        self.client.post(url, user_updated)
 
-        updated_user = User.objects.get(pk=new_user.pk) 
+        updated_user = User.objects.get(pk=new_user.pk)
         self.assertEqual(user_updated['username'], updated_user.username)
         self.assertEqual(user_updated['first_name'], updated_user.first_name)
         self.assertEqual(user_updated['last_name'], updated_user.last_name)
@@ -130,13 +130,13 @@ class UserRUDTest(TestCase):
         user = User.objects.create_user(**user_data)
 
         login_url = reverse('login')
-        login_response = self.client.post(
+        self.client.post(
             login_url, {
                 'username': user_data['username'],
                 'password': user_data['password']
             }
         )
         url = reverse('user_delete', kwargs={'pk': user.pk})
-        response = self.client.post(url)
+        self.client.post(url)
         with self.assertRaises(ObjectDoesNotExist):
             User.objects.get(pk=user.pk)

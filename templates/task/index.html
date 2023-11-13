@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block content %}
+<h1>{% translate 'Tasks' %}</h1>
+<form class="form" action="{% url 'task_create' %}" method="get">
+		{% translate 'Create task' as button_name %}
+		{% bootstrap_button button_type="submit" content=button_name style='danger' %}
+</form>
+<table class="table text-white">
+	<tr>
+		<th>ID</th>
+		<th>{% translate 'Name' %}</th>
+		<th>{% translate 'Status' %}</th>
+		<th>{% translate 'Author' %}</th>
+		<th>{% translate 'Executor' %}</th>
+		<th>{% translate 'Created at' %}</th>
+		<th></th>
+	</tr>
+	{% if tasks %}
+		{% for task in tasks %}
+		<tr>
+			<td>{{ task.id }}</td>
+			<td><a href="#">{{ task.name }}</a></td>
+			<td>{{ task.status }}</td>
+			<td>{{ task.author }}</td>
+			<td>{{ task.executor }}</td>
+			<td>{{ task.created_at }}</td>
+			<td>
+				<a href="{% url 'task_update' status.id %}">{% translate 'Update' %}</a>
+				<br>
+				<a href="{% url 'task_delete' status.id %}">{% translate 'Delete' %}</a>
+			</td>
+		</tr>
+		{% endfor %}
+	{% endif %}
+</table>
+{% endblock %}

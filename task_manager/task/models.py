@@ -1,5 +1,9 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _ 
+from django.utils.translation import gettext_lazy as _
+
+from django.contrib.auth.models import User
+from task_manager.status.models import Status
+
 
 class Task(models.Model):
     name = models.CharField(
@@ -23,18 +27,20 @@ class Task(models.Model):
     )
 
     author = models.ForeignKey(
-        'User',
+        User,
         on_delete=models.PROTECT,
+        related_name='author',
     )
-        
+
     status = models.ForeignKey(
-        "task_manager.status.Status",
+        Status,
         on_delete=models.DO_NOTHING,
     )
 
     executor = models.ForeignKey(
-        "User",
+        User,
         on_delete=models.PROTECT,
+        related_name='executor',
     )
 
     # tag = models.ForeignKey(
@@ -46,7 +52,7 @@ class Task(models.Model):
         _('Created at'),
         auto_now_add=True,
     )
-    
+
     updated_at = models.DateTimeField(
         _('Updated at'),
         auto_now=True,

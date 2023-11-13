@@ -34,5 +34,7 @@ urlpatterns = [
     ),
     path('users/', include('task_manager.user.urls')),
     path('status/', include('task_manager.status.urls')),
+
+    path('task/', include('task_manager.task.urls')),
     path('admin/', admin.site.urls),
 ]

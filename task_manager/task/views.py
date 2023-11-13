@@ -24,6 +24,10 @@ class TaskCreateView(LoginRequiredMixin, View):
     login_url = 'login'
     template = 'task/create.html'
 
+    def is_valid(self, form):
+        form.instance.author = self.request.user
+        return super().is_valid(form)
+
     def get(self, request, *args, **kwargs):
         """Return task creation form."""
         form = TaskForm()
@@ -38,6 +42,18 @@ class TaskCreateView(LoginRequiredMixin, View):
             messages.success(request, msg_text)
             return redirect('tasks_index')
         return render(request, self.template, {'form': form})
+
+
+class TaskReadView(LoginRequiredMixin, View):
+    """Detailed task view."""
+    login_url = 'login'
+    template = 'task/create.html'
+
+    def get(self, request, *args, **kwargs):
+        """Return detailed task template."""
+        task_pk = kwargs.get('pk')
+        task = get_object_or_404(Task, pk=task_pk)
+        return render(request, self.template, {'task': task})
 
 
 class TaskUpdateView(LoginRequiredMixin, View):

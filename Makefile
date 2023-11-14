@@ -18,6 +18,10 @@ setup:	install migrate
 migrate:
 	$(MANAGE) migrate
 
+.PHONY: makemigrations
+makemigrations:
+	$(MANAGE) makemigrations
+
 .PHONY: prod
 prod:
 	poetry run gunicorn -w $(WEB_CONCURRENCY) -b $(HOST):$(PORT) task_manager.wsgi:application

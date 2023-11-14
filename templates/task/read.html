@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block content %}
+<h1>{% translate 'Task overview' %}</h1>
+<div class="text-start text-black card">
+	<h5 class="card-header">{{ task.name }}</h5>
+	<p class="px-3 py-2 m-0">{{ task.description }}</p>
+	<hr>
+	<div class="container ">
+		<div class="row">
+			<div class="col">{% translate "Author" %}</div>
+			<div class="col">{{ task.author }}</div>
+		</div>
+		<div class="row">
+			<div class="col">{% translate "Executor" %}</div>
+			<div class="col">{{ task.executor }}</div>
+		</div>
+		<div class="row">
+			<div class="col">{% translate "Status" %}</div>
+			<div class="col">{{ task.status }}</div>
+		</div>
+		<div class="row">
+			<div class="col">{% translate "Created at" %}</div>
+			<div class="col">{{ task.created_at }}</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<h6>{% translate 'Tags' %}:</h6>
+				<ul>
+					<li><!-- { { task.tag }} --></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<a href="{% url 'task_update' task.pk %}">{% translate 'Update' %}</a>
+				<br>
+				<a href="{% url 'task_delete' task.pk %}">{% translate 'Delete' %}</a>
+			</div>
+		</div>
+	</div>
+		
+</div>
+{% endblock %}

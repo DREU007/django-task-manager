@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Status(models.Model):
-    """Task status one-to-many tasks.""" 
+    """Task status one-to-many tasks."""
     name = models.CharField(
         _("name"),
         max_length=255,
@@ -13,5 +13,15 @@ class Status(models.Model):
             "unique": _("Task status with such Name already exist."),
         }
     )
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(
+        _('Created at'),
+        auto_now_add=True,
+    )
+
+    updated_at = models.DateTimeField(
+        _('Updated at'),
+        auto_now=True,
+    )
+
+    def __str__(self):
+        return self.name

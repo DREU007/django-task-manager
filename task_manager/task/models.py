@@ -61,3 +61,6 @@ class Task(models.Model):
 
     def get_absolute_url(self):
         return reverse('tasks_index')
+
+    def __str__(self):
+        return f'{self.name}'

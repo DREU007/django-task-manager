@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.edit import CreateView
 from django.contrib import messages
 from django.utils.translation import gettext as _
@@ -8,6 +8,21 @@ from django.utils.translation import gettext as _
 
 from .models import Task
 from .forms import TaskForm
+
+
+class UserLimitDeleteMixin(UserPassesTestMixin):
+    """Limit the user ability to delete only his own tasks."""
+
+    def test_func(self):
+        """Check if the user ID match with ID extracted from URL parameters."""
+        task = get_object_or_404(Task, pk=self.kwargs.get('pk'))
+        return self.request.user.pk == task.author_id
+
+    def handle_no_permission(self):
+        """Redirect to users index with flash msg."""
+        msg_text = _("You don't have permition to delete the task.")
+        messages.error(self.request, msg_text)
+        return redirect('tasks_index')
 
 
 class TaskIndexView(LoginRequiredMixin, View):
@@ -78,7 +93,7 @@ class TaskUpdateView(LoginRequiredMixin, View):
         return render(request, self.template, {'form': form})
 
 
-class TaskDeleteView(LoginRequiredMixin, View):
+class TaskDeleteView(LoginRequiredMixin, UserLimitDeleteMixin, View):
     """Task deletion view."""
     login_url = 'login'
     template = 'task/delete.html'

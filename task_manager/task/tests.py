@@ -12,8 +12,15 @@ class TaskCRUDTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        """Set up data for tests."""
-        cls.client = Client()
+        """
+        Set up data for tests.
+
+        Set up class attributes and create objects:
+        author, executor as User objects
+        status_original, status_updated as Status objects
+
+        data - a data for Task object creation
+        """
         user_data = {
             'user1': {
                 'username': 'tota',
@@ -32,42 +39,44 @@ class TaskCRUDTest(TestCase):
         cls.author = User.objects.create_user(**user_data['user1'])
         cls.executor = User.objects.create_user(**user_data['user2'])
 
-        login_url = reverse('login')
-        cls.client.post(
-            login_url,
-            {
-                'username': user_data['user1']['username'],
-                'password': user_data['user2']['password']
-            }
-        )
-
         status_data = {
             'create': {'name': 'Example status'},
             'update': {'name': 'Updated status'},
         }
-        cls.status1 = Status.objects.create(**status_data['create'])
-        cls.status2 = Status.objects.create(**status_data['update'])
+        cls.status_original = Status.objects.create(**status_data['create'])
+        cls.status_updated = Status.objects.create(**status_data['update'])
 
-    def setUp(self):
-        """Set up test enviroment and login user."""
-
-        self.data = {
+        cls.orm_user_create_data = {
+            'name': 'Example task',
+            'description': 'This is example task',
+            'status': cls.status_original,
+            'executor': cls.author,
+            'author': cls.author,
+        }
+        cls.data = {
             'create': {
                 'name': 'Example task',
                 'description': 'This is example task',
-                'status': self.status1,
-                'executor': self.author,
+                'status': cls.status_original.pk,
+                'executor': cls.author.pk,
             },
             'update': {
                 'name': 'Updated task',
                 'description': 'This is updated task',
-                'status': self.status2,
-                'executor': self.executor,
+                'status': cls.status_updated.pk,
+                'executor': cls.executor.pk,
             },
         }
 
+    def setUp(self):
+        """Set up test enviroment and keep user logged in."""
+        self.client = Client()
+        self.client.force_login(
+            user=self.author
+        )
+
     def test_create_task(self):
-        """Test task creation on POST."""
+        """Test task creation in db on POST."""
         url = reverse('task_create')
         task_data = self.data['create']
         self.client.post(url, task_data)
@@ -75,26 +84,27 @@ class TaskCRUDTest(TestCase):
         task = Task.objects.last()
         self.assertEqual(task.name, task_data['name'])
         self.assertEqual(task.description, task_data['description'])
+        self.assertEqual(task.status_id, self.status_original.pk)
 
-    def test_read_task(self):
+    def test_read_tasks_index(self):
         """Test tasks index reading."""
         url = reverse('tasks_index')
-        task_data = self.data['create']
+        task_data = self.orm_user_create_data
         task = Task.objects.create(**task_data)
 
         response = self.client.get(url)
         content = response.content.decode('utf-8')
         self.assertIn(task.name, content)
-        self.assertIn(task.description, content)
+        self.assertIn(task.status.name, content)
 
     def test_update_task(self):
         """Test task updation on POST."""
-        task_data = self.data['create']
+        task_data = self.orm_user_create_data
         task = Task.objects.create(**task_data)
-        url = reverse('task_update', {'pk': task.pk})
+        url = reverse('task_update', kwargs={'pk': task.pk})
 
-        task_updated_data = self.data['updated']
-        self.client.POST(url, task_updated_data)
+        task_updated_data = self.data['update']
+        self.client.post(url, task_updated_data)
 
         task_updated = Task.objects.get(pk=task.pk)
         self.assertEqual(task_updated.name, task_updated_data['name'])
@@ -104,9 +114,9 @@ class TaskCRUDTest(TestCase):
 
     def test_delete_task(self):
         """Test task deletion on POST."""
-        task_data = self.data['create']
+        task_data = self.orm_user_create_data
         task = Task.objects.create(**task_data)
-        url = reverse('task_delete', {'pk': task.pk})
+        url = reverse('task_delete', kwargs={'pk': task.pk})
 
         self.client.post(url)
         with self.assertRaises(ObjectDoesNotExist):

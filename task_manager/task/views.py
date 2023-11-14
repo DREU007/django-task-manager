@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import CreateView
 from django.contrib import messages
 from django.utils.translation import gettext as _
+# from django.urls import reverse_lazy
 
 from .models import Task
 from .forms import TaskForm
@@ -19,35 +21,28 @@ class TaskIndexView(LoginRequiredMixin, View):
         return render(request, self.template, {'tasks': tasks})
 
 
-class TaskCreateView(LoginRequiredMixin, View):
+class TaskCreateView(LoginRequiredMixin, CreateView):
     """Task creation view."""
     login_url = 'login'
-    template = 'task/create.html'
+    template_name = 'task/create.html'
+    model = Task
+    fields = [
+        'name',
+        'description',
+        'status',
+        'executor',
+        # 'tag',
+    ]
 
-    def is_valid(self, form):
+    def form_valid(self, form):
         form.instance.author = self.request.user
-        return super().is_valid(form)
-
-    def get(self, request, *args, **kwargs):
-        """Return task creation form."""
-        form = TaskForm()
-        return render(request, self.template, {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        """Create task on POST."""
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            form.save()
-            msg_text = _('Task successefully created')
-            messages.success(request, msg_text)
-            return redirect('tasks_index')
-        return render(request, self.template, {'form': form})
+        return super().form_valid(form)
 
 
 class TaskReadView(LoginRequiredMixin, View):
     """Detailed task view."""
     login_url = 'login'
-    template = 'task/create.html'
+    template = 'task/read.html'
 
     def get(self, request, *args, **kwargs):
         """Return detailed task template."""
@@ -65,14 +60,16 @@ class TaskUpdateView(LoginRequiredMixin, View):
         """Return task update form."""
         task_pk = kwargs.get('pk')
         task = get_object_or_404(Task, pk=task_pk)
-        form = TaskForm(Task, instance=task)
-        return render(request, self.template, {'form': form})
+        form = TaskForm(instance=task)
+        return render(
+            request, self.template, {'form': form, 'task_pk': task_pk}
+        )
 
     def post(self, request, *args, **kwargs):
         """Update task on POST."""
         task_pk = kwargs.get('pk')
         task = get_object_or_404(Task, pk=task_pk)
-        form = TaskForm(instance=task)
+        form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
             msg_text = _('Task successfully updated')
@@ -89,7 +86,7 @@ class TaskDeleteView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         """Retern task delete form."""
         task_pk = kwargs.get('pk')
-        task = get_object_or_404(Task, instance=task_pk)
+        task = get_object_or_404(Task, pk=task_pk)
         return render(request, self.template, {'task': task})
 
     def post(self, request, *args, **kwargs):

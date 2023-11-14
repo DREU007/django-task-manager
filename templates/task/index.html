@@ -23,15 +23,15 @@
 		{% for task in tasks %}
 		<tr>
 			<td>{{ task.id }}</td>
-			<td><a href="#">{{ task.name }}</a></td>
+			<td><a href="{% url 'task_read' task.pk %}">{{ task.name }}</a></td>
 			<td>{{ task.status }}</td>
 			<td>{{ task.author }}</td>
 			<td>{{ task.executor }}</td>
 			<td>{{ task.created_at }}</td>
 			<td>
-				<a href="{% url 'task_update' status.id %}">{% translate 'Update' %}</a>
+				<a href="{% url 'task_update' task.id %}">{% translate 'Update' %}</a>
 				<br>
-				<a href="{% url 'task_delete' status.id %}">{% translate 'Delete' %}</a>
+				<a href="{% url 'task_delete' task.id %}">{% translate 'Delete' %}</a>
 			</td>
 		</tr>
 		{% endfor %}

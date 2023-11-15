@@ -49,7 +49,7 @@ class LabelCRUDTest(TestCase):
         url = reverse('labels_index')
         response = self.client.get(url)
 
-        self.asertIn(label.name, response)
+        self.assertIn(label.name, response.content.decode('utf-8'))
 
     def test_update_label(self):
         """Test label update on POST."""
@@ -57,8 +57,8 @@ class LabelCRUDTest(TestCase):
         label = Label.objects.create(**label_data)
         url = reverse('label_update', kwargs={'pk': label.pk})
 
-        label_updated_data = self.label_data['updated']
-        self.cliet.post(url, label_updated_data)
+        label_updated_data = self.label_data['update']
+        self.client.post(url, label_updated_data)
         label_updated = Label.objects.get(pk=label.pk)
         self.assertEqual(label_updated_data['name'], label_updated.name)
 

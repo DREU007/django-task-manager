@@ -28,9 +28,11 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<h6>{% translate 'Tags' %}:</h6>
+				<h6>{% translate 'Labels' %}:</h6>
 				<ul>
-					<li><!-- { { task.tag }} --></li>
+					{% for label in task.labels.all %}  
+						<li>{{ label.name }}</li>
+					{% endfor %}
 				</ul>
 			</div>
 		</div>

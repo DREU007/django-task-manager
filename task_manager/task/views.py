@@ -46,7 +46,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
         'description',
         'status',
         'executor',
-        # 'tag',
+        'labels',
     ]
 
     def form_valid(self, form):

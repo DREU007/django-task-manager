@@ -7,6 +7,7 @@ from task_manager.status.models import Status
 
 
 class Task(models.Model):
+    """Represents a task in the task manager."""
     name = models.CharField(
         _('name'),
         max_length=255,

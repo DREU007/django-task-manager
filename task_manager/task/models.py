@@ -4,6 +4,7 @@ from django.shortcuts import reverse
 
 from django.contrib.auth.models import User
 from task_manager.status.models import Status
+from task_manager.label.models import Label
 
 
 class Task(models.Model):
@@ -45,10 +46,7 @@ class Task(models.Model):
         related_name='executor',
     )
 
-    # tag = models.ForeignKey(
-    #     'task_manager.tag.Tag',
-    #     on_delete=models.DO_NOTHING,
-    # )
+    labels = models.ManyToManyField(Label)
 
     created_at = models.DateTimeField(
         _('Created at'),

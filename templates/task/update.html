@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="text-start">
-	<h1>{% translate 'Create task' %}</h1>
+	<h1>{% translate 'Update task' %}</h1>
 	<form action="{% url 'task_update' task_pk %}" method="post" class="form">
 		{% csrf_token %}
 

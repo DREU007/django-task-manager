@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from task_manager.task.models import Task
+from django.shortcuts import reverse
 
 
 class Label(models.Model):
@@ -14,7 +15,10 @@ class Label(models.Model):
             "unique": _("Task status with such Name already exist."),
         }
     )
-    task = models.ManyToManyField(
-       Task,
-       on_delete=models.PROTECT,
-    )
+    task = models.ManyToManyField(Task)
+
+    def get_absolute_url(self):
+        return reverse('labels_index')
+
+    def __str__(self):
+        return self.name

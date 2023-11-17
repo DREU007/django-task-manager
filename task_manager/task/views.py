@@ -8,6 +8,7 @@ from django.utils.translation import gettext as _
 
 from .models import Task
 from .forms import TaskForm
+from .filters import TaskFilter
 
 
 class UserLimitDeleteMixin(UserPassesTestMixin):
@@ -33,7 +34,12 @@ class TaskIndexView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         """Return tasks index."""
         tasks = Task.objects.all()
-        return render(request, self.template, {'tasks': tasks})
+        tasks_filtered = TaskFilter(
+            request.GET, queryset=tasks, request=request
+        )
+        return render(
+            request, self.template, {'filter': tasks_filtered}
+        )
 
 
 class TaskCreateView(LoginRequiredMixin, CreateView):

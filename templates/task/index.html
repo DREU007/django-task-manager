@@ -9,6 +9,12 @@
 		{% translate 'Create task' as button_name %}
 		{% bootstrap_button button_type="submit" content=button_name style='danger' %}
 </form>
+<div class="text-start container border rounded p-2">
+	<form class="form m-0" action="" method="get">
+		{{ filter.form.as_p }}
+		<input type="submit" name="filter">
+	</form>
+</div>
 <table class="table text-white">
 	<tr>
 		<th>ID</th>
@@ -19,8 +25,8 @@
 		<th>{% translate 'Created at' %}</th>
 		<th></th>
 	</tr>
-	{% if tasks %}
-		{% for task in tasks %}
+	{% if filter.qs %}
+		{% for task in filter.qs %}
 		<tr>
 			<td>{{ task.id }}</td>
 			<td><a href="{% url 'task_read' task.pk %}">{{ task.name }}</a></td>

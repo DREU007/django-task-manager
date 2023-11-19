@@ -1,0 +1,122 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$cwBx0pbZJ41WM8e84MKK5Q$d5xQdV5jAasyoY5NQIvTWH74UrZ+dIHyX9mExphi52g=",
+        "last_login": "2023-11-18T18:59:25.297Z",
+        "is_superuser": false,
+        "username": "tota",
+        "first_name": "Tota",
+        "last_name": "Totavich",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-11-18T18:33:12.987Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$KDZ3nrj9n0n22rzZbpplGA$TabnVEIRzKCf5T2c2IiIkMiDJQ3/ryIzx9klEZYQNCs=",
+        "last_login": "2023-11-18T19:01:58.557Z",
+        "is_superuser": false,
+        "username": "dada",
+        "first_name": "Dada",
+        "last_name": "Dadavich",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-11-18T18:33:22.330Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "status.status",
+    "pk": 1,
+    "fields": {
+        "name": "Example status",
+        "created_at": "2023-11-18T13:22:21.713Z",
+        "updated_at": "2023-11-18T13:22:21.713Z"
+    }
+},
+{
+    "model": "status.status",
+    "pk": 2,
+    "fields": {
+        "name": "Updated status",
+        "created_at": "2023-11-18T13:22:31.794Z",
+        "updated_at": "2023-11-18T13:22:31.794Z"
+    }
+},
+{
+    "model": "label.label",
+    "pk": 1,
+    "fields": {
+        "name": "bug",
+        "created_at": "2023-11-18T18:15:44.396Z",
+        "updated_at": "2023-11-18T18:15:44.396Z"
+    }
+},
+{
+    "model": "label.label",
+    "pk": 2,
+    "fields": {
+        "name": "fix",
+        "created_at": "2023-11-18T18:15:55.538Z",
+        "updated_at": "2023-11-18T18:15:55.538Z"
+    }
+},
+{
+    "model": "task.task",
+    "pk": 1,
+    "fields": {
+        "name": "Example task",
+        "description": "This is example task",
+        "author": 1,
+        "status": 1,
+        "executor": 1,
+        "created_at": "2023-11-18T19:00:09.747Z",
+        "updated_at": "2023-11-18T19:00:09.748Z",
+        "labels": [
+            1
+        ]
+    }
+},
+{
+    "model": "task.task",
+    "pk": 2,
+    "fields": {
+        "name": "Another example task",
+        "description": "This is another example",
+        "author": 1,
+        "status": 2,
+        "executor": 2,
+        "created_at": "2023-11-18T19:01:33.535Z",
+        "updated_at": "2023-11-18T19:01:33.535Z",
+        "labels": [
+            2
+        ]
+    }
+},
+{
+    "model": "task.task",
+    "pk": 3,
+    "fields": {
+        "name": "The third example task",
+        "description": "Third example",
+        "author": 2,
+        "status": 1,
+        "executor": 2,
+        "created_at": "2023-11-18T19:03:01.213Z",
+        "updated_at": "2023-11-18T19:03:01.213Z",
+        "labels": [
+            1
+        ]
+    }
+}
+]

@@ -23,6 +23,8 @@ class Task(models.Model):
         _('description'),
         max_length=255,
         unique=False,
+        blank=True,
+        null=True,
         help_text=_("Required 255 characters or fewer."),
         error_messages={
             "unique": _("Task status with such Name already exist."),
@@ -44,9 +46,14 @@ class Task(models.Model):
         User,
         on_delete=models.PROTECT,
         related_name='executor',
+        blank=True,
+        null=True,
     )
 
-    labels = models.ManyToManyField(Label)
+    labels = models.ManyToManyField(
+        Label,
+        blank=True,
+    )
 
     created_at = models.DateTimeField(
         _('Created at'),

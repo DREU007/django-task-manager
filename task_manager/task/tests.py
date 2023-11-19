@@ -4,7 +4,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 
 from task_manager.status.models import Status
+from task_manager.label.models import Label
 from .models import Task
+from .filters import TaskFilter
 
 
 class TaskCRUDTest(TestCase):
@@ -121,3 +123,39 @@ class TaskCRUDTest(TestCase):
         self.client.post(url)
         with self.assertRaises(ObjectDoesNotExist):
             Task.objects.get(pk=task.pk)
+
+
+class TaskFilterTest(TestCase):
+    """Test queryset task filter with fixtures in database."""
+    fixtures = ['filter_fixtures.json']
+
+    def test_filter_status(self):
+        """Test queryset status filter."""
+        status = Status.objects.get(name='Example status')
+        qs_filter = TaskFilter(
+            data={'status': status.pk}, queryset=Task.objects.all()
+        )
+        self.assertEqual(
+            list(qs_filter.qs),
+            list(Task.objects.filter(status=status.pk)),
+        )
+
+    def test_filter_label(self):
+        """Test queryset label filter."""
+        label = Label.objects.get(name='fix')
+        qs_filter = TaskFilter(
+            data={'labels': label.pk}, queryset=Task.objects.all()
+        )
+        self.assertEqual(
+            list(qs_filter.qs), list(Task.objects.filter(labels=label.pk))
+        )
+
+    def test_filter_author(self):
+        """Test queryset author filter."""
+        author = User.objects.get(username="tota")
+        qs_filter = TaskFilter(
+            data={'author': author.pk}, queryset=Task.objects.all()
+        )
+        self.assertEqual(
+            list(qs_filter.qs), list(Task.objects.filter(author=author.pk))
+        )

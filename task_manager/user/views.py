@@ -29,7 +29,7 @@ class UsersView(View):
 
     def get(self, request, *args, **kwargs):
         """Return all users."""
-        users = User.objects.all() 
+        users = User.objects.all()
         return render(request, 'user/index.html', {'users': users})
 
 
@@ -47,9 +47,9 @@ class UserCreateView(View):
         if form.is_valid():
             form.save()
             msg_text = _('User is successfully created')
-            messages.success(request, msg_text) 
+            messages.success(request, msg_text)
             return redirect('users_index')
-        return render(request, 'user/create.html', {'form': form}) 
+        return render(request, 'user/create.html', {'form': form})
 
 
 class UserUpdateView(LoginRequiredMixin, UserLimitChangeMixin, View):
@@ -71,7 +71,9 @@ class UserUpdateView(LoginRequiredMixin, UserLimitChangeMixin, View):
         """Update a user data."""
         user_id = kwargs.get('pk')
         user = get_object_or_404(User, pk=user_id)
-        form = forms.CustomUserChangeForm(user=user, data=request.POST, instance=user)
+        form = forms.CustomUserChangeForm(
+            user=user, data=request.POST, instance=user
+        )
         if form.is_valid():
             form.save()
             msg_text = _('User is successfully updated')
@@ -98,5 +100,5 @@ class UserDeleteView(LoginRequiredMixin, UserLimitChangeMixin, View):
         user = get_object_or_404(User, pk=kwargs.get('pk'))
         user.delete()
         msg_text = _('User is successfully deleted')
-        messages.success(request, msg_text) 
+        messages.success(request, msg_text)
         return redirect('users_index')

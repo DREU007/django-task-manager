@@ -9,8 +9,9 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 
-from .models import Status 
-from .forms import StatusForm 
+from .models import Status
+from .forms import StatusForm
+
 
 class StatusIndexView(LoginRequiredMixin, View):
     """Index statuses view."""
@@ -53,7 +54,7 @@ class StatusUpdateView(LoginRequiredMixin, View):
         """Render update status form."""
         status_pk = kwargs.get('pk')
         status = get_object_or_404(Status, pk=status_pk)
-        form = StatusForm(instance=status) # StatusChangeForm ??
+        form = StatusForm(instance=status)
         return render(
             request, self.template, {'form': form, 'status_pk': status_pk}
         )
@@ -64,13 +65,14 @@ class StatusUpdateView(LoginRequiredMixin, View):
         status = Status.objects.get(pk=status_pk)
         form = StatusForm(request.POST, instance=status)
         if form.is_valid():
-           form.save()
-           msg_text = _('Status successfully updated')
-           messages.success(request, msg_text)
-           return redirect('status_index')
+            form.save()
+            msg_text = _('Status successfully updated')
+            messages.success(request, msg_text)
+            return redirect('status_index')
         return render(
             request, self.template, {'form': form, 'status_pk': status_pk}
         )
+
 
 class StatusDeleteView(LoginRequiredMixin, View):
     """Delete status view."""
@@ -80,7 +82,7 @@ class StatusDeleteView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         """Render delete status form."""
         status = get_object_or_404(Status, pk=kwargs.get('pk'))
-        return render(request, self.template, {'status': status}) 
+        return render(request, self.template, {'status': status})
 
     def post(self, request, *args, **kwargs):
         """Delete status on POST."""

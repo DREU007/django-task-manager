@@ -4,7 +4,7 @@
 {% load i18n %}
 
 {% block content %}
-<h1>{% translate 'Status' %}</h1>
+<h1>{% translate 'Labels' %}</h1>
 <form class="form" action="{% url 'label_create' %}" method="get">
 		{% translate 'Create label' as button_name %}
 		{% bootstrap_button button_type="submit" content=button_name style='danger' %}

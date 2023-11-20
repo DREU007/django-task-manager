@@ -5,8 +5,8 @@
 {% bootstrap_javascript %}
 
 {% block navbar %}
-	<a class="nav-link fw-bold py-1 px-0" href="{% url 'status_index' %}">{% trans 'Status' %}</a>
-	<a class="nav-link fw-bold py-1 px-0" href="{% url 'labels_index' %}">{% trans 'Tags' %}</a>
+	<a class="nav-link fw-bold py-1 px-0" href="{% url 'status_index' %}">{% trans 'Statuses' %}</a>
+	<a class="nav-link fw-bold py-1 px-0" href="{% url 'labels_index' %}">{% trans 'Labels' %}</a>
 	<a class="nav-link fw-bold py-1 px-0" href="{% url 'tasks_index' %}">{% trans 'Tasks' %}</a>
 	<form action="{% url 'logout' %}" method="post" class="nav-link fw-bold py-1 px-0">
 		{% csrf_token %}

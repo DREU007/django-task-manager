@@ -8,11 +8,9 @@
 	<form action="{% url 'task_delete' task.id %}" method="post" class="form">
 		<p>
 			{% with task_name=task.name %}
-				{% blocktranslate %}
-				Do you want to delete	{{ task_name }}?
-				{% endblocktranslate %}
+				{% blocktranslate %}Do you want to delete {{ task_name }}?{% endblocktranslate %}
 			{% endwith %}
-			</p>
+		</p>
 		{% csrf_token %}
 
 		{% translate 'Yes, delete' as button_name %}

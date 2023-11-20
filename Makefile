@@ -12,7 +12,7 @@ install:
 	poetry install
 
 .PHONY: setup
-setup:	install migrate
+setup:	install migrate compilemessages
 
 .PHONY: migrate
 migrate:

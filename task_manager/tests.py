@@ -4,9 +4,9 @@ from django.shortcuts import reverse
 
 class HomePageTest(TestCase):
     """Test registration page."""
-    
+
     def setUp(self):
-        """Set initial condition for each test method."""  
+        """Set initial condition for each test method."""
         self.client = Client()
 
     def test_home_page_view(self):

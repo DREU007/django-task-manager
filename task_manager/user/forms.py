@@ -15,7 +15,7 @@ class CustomUserChangeForm(PasswordChangeForm, ModelForm):
     """
     A form that changes a user data.
     """
-    
+
     def __init__(self, *, user, **kwargs):
         """
         Initialize parrent classes.
@@ -35,5 +35,4 @@ class CustomUserChangeForm(PasswordChangeForm, ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name',] 
-    
+        fields = ['username', 'first_name', 'last_name',]

@@ -1,4 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -8,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 20:25+0400\n"
+"POT-Creation-Date: 2023-11-20 18:39+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,29 +15,115 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: task_manager/user/views.py:34
+#: task_manager/label/models.py:9 task_manager/status/models.py:8
+#: task_manager/task/filters.py:13 task_manager/task/models.py:13
+#: templates/label/index.html:15 templates/status/index.html:15
+#: templates/task/index.html:21
+msgid "Name"
+msgstr "Имя"
+
+#: task_manager/label/models.py:12 task_manager/status/models.py:11
+#: task_manager/task/models.py:16 task_manager/task/models.py:28
+msgid "Required 255 characters or fewer."
+msgstr "Требуется 255 символа или меньше."
+
+#: task_manager/label/models.py:14
+msgid "Label with such name already exist."
+msgstr "Метка с таким именем уже существует."
+
+#: task_manager/label/models.py:18 task_manager/status/models.py:17
+#: task_manager/task/models.py:56 templates/label/index.html:16
+#: templates/status/index.html:16 templates/task/index.html:25
+#: templates/task/read.html:26 templates/user/index.html:13
+msgid "Created at"
+msgstr "Дата создания"
+
+#: task_manager/label/models.py:22 task_manager/status/models.py:22
+#: task_manager/task/models.py:61
+msgid "Updated at"
+msgstr "Измененно"
+
+#: task_manager/status/models.py:13
+msgid "Status with such name already exist."
+msgstr "Статус с таким именем уже существует."
+
+#: task_manager/status/views.py:42
+msgid "Status successfully created"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: task_manager/status/views.py:69
+msgid "Status successfully updated"
+msgstr "Пользователь успешно изменен"
+
+#: task_manager/status/views.py:91
+msgid "Status successfully deleted"
+msgstr "Пользователь успешно удален"
+
+#: task_manager/task/filters.py:18 templates/status/index.html:7
+#: templates/task/index.html:22 templates/task/read.html:22
+msgid "Status"
+msgstr "Статус"
+
+#: task_manager/task/filters.py:26 templates/task/index.html:23
+#: templates/task/read.html:14
+msgid "Author"
+msgstr "Автор"
+
+#: task_manager/task/filters.py:30
+msgid "Label"
+msgstr "Метка"
+
+#: task_manager/task/filters.py:34
+msgid "Only my tasks"
+msgstr "Мои задачи"
+
+#: task_manager/task/filters.py:40
+msgid "Only tasks for me"
+msgstr "Задачи для меня"
+
+#: task_manager/task/models.py:18
+msgid "Task with such name already exist."
+msgstr "Задача с таким именем уже существует."
+
+#: task_manager/task/models.py:23
+msgid "Description"
+msgstr "Описание"
+
+#: task_manager/task/views.py:24
+msgid "You don't have permition to delete the task"
+msgstr "У вас нет разрешения на удаление этой задачи"
+
+#: task_manager/task/views.py:96
+msgid "Task successfully updated"
+msgstr "Задача успешно изменена"
+
+#: task_manager/task/views.py:118
+msgid "Task successfully deleted"
+msgstr "Задача успешно удален"
+
+#: task_manager/user/views.py:22
+msgid "You don't have permition to change other user"
+msgstr "У вас нет разрешения на имзменение другого пользователя"
+
+#: task_manager/user/views.py:49
 msgid "User is successfully created"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: task_manager/user/views.py:62
+#: task_manager/user/views.py:79
 msgid "User is successfully updated"
 msgstr "Пользователь успешно изменен"
 
-#: task_manager/user/views.py:86
+#: task_manager/user/views.py:102
 msgid "User is successfully deleted"
 msgstr "Пользователь успешно удален"
 
-#: task_manager/views.py:22
+#: task_manager/views.py:20
 msgid "You are logged in"
 msgstr "Вы залогинены"
-
-#: templates/components/language_switcher.html:8
-msgid "Language"
-msgstr "Язык"
 
 #: templates/components/navbar.html:6 templates/index.html:9
 msgid "Task Manager"
@@ -61,16 +146,104 @@ msgid "Sign Up"
 msgstr "Регистрация"
 
 #: templates/components/navbar_logged.html:8
-msgid "Status"
-msgstr "Статус"
+msgid "Statuses"
+msgstr "Статусы"
 
-#: templates/components/navbar_logged.html:9
-msgid "Tags"
-msgstr "Теги"
+#: templates/components/navbar_logged.html:9 templates/label/index.html:7
+#: templates/task/read.html:31
+msgid "Labels"
+msgstr "Метки"
 
-#: templates/components/navbar_logged.html:10
+#: templates/components/navbar_logged.html:10 templates/task/index.html:7
 msgid "Tasks"
 msgstr "Задачи"
+
+#: templates/components/navbar_logged.html:14
+msgid "Exit"
+msgstr "Выход"
+
+#: templates/label/create.html:7 templates/label/index.html:9
+msgid "Create label"
+msgstr "Создать метку"
+
+#: templates/label/create.html:14 templates/status/create.html:14
+#: templates/task/create.html:14
+msgid "Create"
+msgstr "Создать"
+
+#: templates/label/delete.html:7
+msgid "Delete label"
+msgstr "Удалить пользователя"
+
+#: templates/label/delete.html:11
+#, python-format
+msgid "Do you want to delete %(label_name)s?"
+msgstr "Вы уверены, что хотите удалить %(label_name)s?"
+
+#: templates/label/delete.html:16 templates/status/delete.html:16
+#: templates/task/delete.html:16 templates/user/delete.html:16
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+#: templates/label/index.html:26 templates/label/update.html:14
+#: templates/status/index.html:26 templates/status/update.html:14
+#: templates/task/index.html:38 templates/task/read.html:41
+#: templates/task/update.html:14 templates/user/index.html:24
+#: templates/user/update.html:7 templates/user/update.html:14
+msgid "Update"
+msgstr "Изменить"
+
+#: templates/label/index.html:28 templates/status/index.html:28
+#: templates/task/index.html:40 templates/task/read.html:43
+#: templates/user/index.html:26
+msgid "Delete"
+msgstr "Удалить"
+
+#: templates/label/update.html:7
+msgid "Update label"
+msgstr "Изменить"
+
+#: templates/status/create.html:7 templates/status/index.html:9
+msgid "Create status"
+msgstr "Создать статус"
+
+#: templates/status/delete.html:7
+msgid "Delete status"
+msgstr "Удалить статус"
+
+#: templates/status/delete.html:11
+#, python-format
+msgid "Do you want to delete %(status_name)s?"
+msgstr "Вы уверены, что хотите удалить %(status_name)s?"
+
+#: templates/status/update.html:7
+msgid "Update status"
+msgstr "Изменить статус"
+
+#: templates/task/create.html:7 templates/task/index.html:9
+msgid "Create task"
+msgstr "Создать задачу"
+
+#: templates/task/delete.html:7
+msgid "Delete task"
+msgstr "Удалить задачу"
+
+#: templates/task/delete.html:11
+#, python-format
+msgid "Do you want to delete %(task_name)s?"
+msgstr "Вы уверены, что хотите удалить %(status_name)s?"
+
+#: templates/task/index.html:24 templates/task/read.html:18
+msgid "Executor"
+msgstr "Исполнитель"
+
+#: templates/task/read.html:7
+msgid "Task overview"
+msgstr "Просмотр задачи"
+
+#: templates/task/update.html:7
+msgid "Update task"
+msgstr "Изменить задачу"
 
 #: templates/user/create.html:7 templates/user/create.html:14
 msgid "Register"
@@ -82,15 +255,8 @@ msgstr "Удаление пользователя"
 
 #: templates/user/delete.html:11
 #, python-format
-msgid ""
-"\n"
-"\t\t\tDo you want to delete\t%(first_name)s %(last_name)s?\n"
-"\t\t\t"
-msgstr "Вы уверены, что хотите удалить\t%(first_name)s %(last_name)s?"
-
-#: templates/user/delete.html:18
-msgid "Yes, delete"
-msgstr "Да, удалить"
+msgid "Do you want to delete %(first_name)s %(last_name)s?"
+msgstr "Вы уверены, что хотите удалить %(first_name)s %(last_name)s?"
 
 #: templates/user/index.html:11
 msgid "User name"
@@ -99,19 +265,6 @@ msgstr "Имя пользователя"
 #: templates/user/index.html:12
 msgid "Full name"
 msgstr "Полное имя"
-
-#: templates/user/index.html:13
-msgid "Created at"
-msgstr "Дата создания"
-
-#: templates/user/index.html:24 templates/user/update.html:7
-#: templates/user/update.html:14
-msgid "Update"
-msgstr "Изменить"
-
-#: templates/user/index.html:26
-msgid "Delete"
-msgstr "Удалить"
 
 #: templates/user/login.html:7
 msgid "Login"

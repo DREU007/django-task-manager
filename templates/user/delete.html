@@ -8,9 +8,7 @@
 	<form action="{% url 'user_delete' user.id %}" method="post" class="form">
 		<p>
 		{% with first_name=user.first_name last_name=user.last_name %}
-			{% blocktranslate %}
-			Do you want to delete	{{ first_name }} {{last_name}}?
-			{% endblocktranslate %}
+			{% blocktranslate %}Do you want to delete {{ first_name }} {{last_name}}?{% endblocktranslate %}
 		{% endwith %}
 		</p>
 		{% csrf_token %}

@@ -19,7 +19,7 @@ class UserLimitChangeMixin(UserPassesTestMixin):
 
     def handle_no_permission(self):
         """Redirect to users index with flash msg."""
-        msg_text = _("You don't have permition to change other user.")
+        msg_text = _("You don't have permition to change other user")
         messages.error(self.request, msg_text)
         return redirect('users_index')
 

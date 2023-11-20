@@ -21,7 +21,7 @@ class UserLimitDeleteMixin(UserPassesTestMixin):
 
     def handle_no_permission(self):
         """Redirect to users index with flash msg."""
-        msg_text = _("You don't have permition to delete the task.")
+        msg_text = _("You don't have permition to delete the task")
         messages.error(self.request, msg_text)
         return redirect('tasks_index')
 

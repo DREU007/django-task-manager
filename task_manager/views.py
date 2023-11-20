@@ -16,5 +16,5 @@ class IndexView(View):
 class CustomLoginView(SuccessMessageMixin, LoginView):
     """User login page view."""
     template_name = 'user/login.html'
-    next_page = reverse_lazy('users_index')
+    next_page = reverse_lazy('index')
     success_message = _("You are logged in")

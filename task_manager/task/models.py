@@ -10,25 +10,22 @@ from task_manager.label.models import Label
 class Task(models.Model):
     """Represents a task in the task manager."""
     name = models.CharField(
-        _('name'),
+        _('Name'),
         max_length=255,
         unique=True,
         help_text=_("Required 255 characters or fewer."),
         error_messages={
-            "unique": _("Task status with such Name already exist."),
+            "unique": _("Task with such name already exist."),
         }
     )
 
     description = models.TextField(
-        _('description'),
+        _('Description'),
         max_length=255,
         unique=False,
         blank=True,
         null=True,
         help_text=_("Required 255 characters or fewer."),
-        error_messages={
-            "unique": _("Task status with such Name already exist."),
-        }
     )
 
     author = models.ForeignKey(

@@ -2,6 +2,8 @@ import django_filters
 from django import forms
 from .models import Task
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
+from task_manager.status.models import Status
 from task_manager.label.models import Label
 
 
@@ -10,22 +12,34 @@ class TaskFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(
         label=_('Name'),
         field_name="name",
-        lookup_expr='icontains'
+        lookup_expr='icontains',
+    )
+    status = django_filters.ModelChoiceFilter(
+        label=_('Status'),
+        queryset=Status.objects.all(),
+    )
+    executor = django_filters.ModelChoiceFilter(
+        label=_('Executor'),
+        queryset=User.objects.all(),
+    )
+    author = django_filters.ModelChoiceFilter(
+        label=_('Author'),
+        queryset=User.objects.all(),
     )
     labels = django_filters.ModelChoiceFilter(
-        # label=_('Label'),
-        queryset=Label.objects.all()
+        label=_('Label'),
+        queryset=Label.objects.all(),
     )
     is_author = django_filters.BooleanFilter(
         label=_('Only my tasks'),
         method='filter_is_author',
-        widget=forms.CheckboxInput()
+        widget=forms.CheckboxInput(),
     )
 
     is_executor = django_filters.BooleanFilter(
         label=_('Only tasks for me'),
         method='filter_is_executor',
-        widget=forms.CheckboxInput()
+        widget=forms.CheckboxInput(),
     )
 
     class Meta:

@@ -6,20 +6,20 @@ from django.shortcuts import reverse
 class Label(models.Model):
     """Represents a label for a task in the task manager."""
     name = models.CharField(
-        _('name'),
+        _('Name'),
         max_length=255,
         unique=True,
         help_text=_("Required 255 characters or fewer."),
         error_messages={
-            "unique": _("Task status with such Name already exist."),
+            "unique": _("Label with such name already exist."),
         }
     )
     created_at = models.DateTimeField(
-        _('created at'),
+        _('Created at'),
         auto_now_add=True,
     )
     updated_at = models.DateTimeField(
-        _('updated_at'),
+        _('Updated at'),
         auto_now=True,
     )
 

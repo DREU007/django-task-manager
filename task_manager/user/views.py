@@ -48,7 +48,7 @@ class UserCreateView(View):
             form.save()
             msg_text = _('User is successfully created')
             messages.success(request, msg_text)
-            return redirect('users_index')
+            return redirect('login')
         return render(request, 'user/create.html', {'form': form})
 
 

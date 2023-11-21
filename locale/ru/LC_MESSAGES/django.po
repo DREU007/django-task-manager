@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-20 18:39+0400\n"
+"POT-Creation-Date: 2023-11-21 09:37+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,6 +68,11 @@ msgstr "Пользователь успешно удален"
 msgid "Status"
 msgstr "Статус"
 
+#: task_manager/task/filters.py:22 templates/task/index.html:24
+#: templates/task/read.html:18
+msgid "Executor"
+msgstr "Исполнитель"
+
 #: task_manager/task/filters.py:26 templates/task/index.html:23
 #: templates/task/read.html:14
 msgid "Author"
@@ -121,9 +126,13 @@ msgstr "Пользователь успешно изменен"
 msgid "User is successfully deleted"
 msgstr "Пользователь успешно удален"
 
-#: task_manager/views.py:20
+#: task_manager/views.py:21
 msgid "You are logged in"
 msgstr "Вы залогинены"
+
+#: task_manager/views.py:30
+msgid "You are logged out"
+msgstr "Вы разлогинены"
 
 #: templates/components/navbar.html:6 templates/index.html:9
 msgid "Task Manager"
@@ -232,10 +241,6 @@ msgstr "Удалить задачу"
 #, python-format
 msgid "Do you want to delete %(task_name)s?"
 msgstr "Вы уверены, что хотите удалить %(status_name)s?"
-
-#: templates/task/index.html:24 templates/task/read.html:18
-msgid "Executor"
-msgstr "Исполнитель"
 
 #: templates/task/read.html:7
 msgid "Task overview"

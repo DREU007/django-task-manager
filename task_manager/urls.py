@@ -29,7 +29,7 @@ urlpatterns = [
     ),
     path(
         'logout/',
-        LogoutView.as_view(next_page=reverse_lazy('users_index')),
+        LogoutView.as_view(next_page=reverse_lazy('index')),
         name='logout'
     ),
     path('users/', include('task_manager.user.urls')),

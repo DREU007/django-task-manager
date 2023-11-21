@@ -252,7 +252,7 @@ msgstr "Изменить задачу"
 
 #: templates/user/create.html:7 templates/user/create.html:14
 msgid "Register"
-msgstr "Регистрация"
+msgstr "Зарегистрировать"
 
 #: templates/user/delete.html:7
 msgid "Delete user"

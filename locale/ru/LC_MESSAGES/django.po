@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-21 09:37+0400\n"
+"POT-Creation-Date: 2023-11-22 14:06+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,11 +102,11 @@ msgstr "Описание"
 msgid "You don't have permition to delete the task"
 msgstr "У вас нет разрешения на удаление этой задачи"
 
-#: task_manager/task/views.py:96
+#: task_manager/task/views.py:97
 msgid "Task successfully updated"
 msgstr "Задача успешно изменена"
 
-#: task_manager/task/views.py:118
+#: task_manager/task/views.py:119
 msgid "Task successfully deleted"
 msgstr "Задача успешно удален"
 
@@ -250,7 +250,11 @@ msgstr "Просмотр задачи"
 msgid "Update task"
 msgstr "Изменить задачу"
 
-#: templates/user/create.html:7 templates/user/create.html:14
+#: templates/user/create.html:7
+msgid "Registration"
+msgstr "Регистрация"
+
+#: templates/user/create.html:14
 msgid "Register"
 msgstr "Зарегистрировать"
 

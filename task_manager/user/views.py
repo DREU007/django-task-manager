@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from django.contrib import messages
-from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from . import forms
@@ -35,30 +33,23 @@ class UsersView(View):
         return render(request, 'user/index.html', {'users': users})
 
 
-class UserCreateView(SuccessMessageMixin, CreateView):
+class UserCreateView(View):
     """User create page view."""
-    template_name = 'user/create.html'
-    form_class = forms.CustomUserCreationForm
-    success_url = reverse_lazy('login')
-    success_message = _('User is successfully created')
 
-# class UserCreateView(View):
-#     """User create page view."""
-#
-#     def get(self, request, *args, **kwargs):
-#         """Return a user creation form."""
-#         form = forms.CustomUserCreationForm()
-#         return render(request, 'user/create.html', {'form': form})
-#
-#     def post(self, request, *args, **kwargs):
-#         """Create a new user."""
-#         form = forms.CustomUserCreationForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             msg_text = _('User is successfully created')
-#             messages.success(request, msg_text)
-#             return redirect('login')
-#         return render(request, 'user/create.html', {'form': form})
+    def get(self, request, *args, **kwargs):
+        """Return a user creation form."""
+        form = forms.CustomUserCreationForm()
+        return render(request, 'user/create.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        """Create a new user."""
+        form = forms.CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            msg_text = _('User is successfully created')
+            messages.success(request, msg_text)
+            return redirect('login')
+        return render(request, 'user/create.html', {'form': form})
 
 
 class UserUpdateView(LoginRequiredMixin, UserLimitChangeMixin, View):

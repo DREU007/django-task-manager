@@ -56,6 +56,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
     ]
 
     def form_valid(self, form):
+        """Assign user as author to the model instance."""
         form.instance.author = self.request.user
         return super().form_valid(form)
 

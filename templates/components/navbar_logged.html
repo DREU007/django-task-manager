@@ -8,10 +8,10 @@
 	{% url 'status_index' as url %}<a class="nav-link fw-bold py-1 px-0{% if request.path == url %} active" aria-current="page"{% else %}"{% endif %} href="{{ url }}">{% trans 'Statuses' %}</a>
 	{% url 'labels_index' as url %}<a class="nav-link fw-bold py-1 px-0{% if request.path == url %} active" aria-current="page"{% else %}"{% endif %} href="{{ url }}">{% trans 'Labels' %}</a>
 	{% url 'tasks_index' as url %}<a class="nav-link fw-bold py-1 px-0{% if request.path == url %} active" aria-current="page"{% else %}"{% endif %} href="{{ url }}">{% trans 'Tasks' %}</a>
-	<form action="{% url 'logout' %}" method="post" class="nav-link fw-bold py-1 px-0">
+	<form action="{% url 'logout' %}" method="post" class="nav-link py-1 px-0 mb-0">
 		{% csrf_token %}
 		{% url 'sign_out' as sign_out_link %}
 		{% trans 'Exit' as exit %}
-		{% bootstrap_button exit button_type="submit" button_class="fw-bold" %}
+		{% bootstrap_button exit button_type="submit" button_class="text-reset fw-bold p-0" %}
 	</form>
 {% endblock %}

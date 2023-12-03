@@ -65,7 +65,7 @@ msgstr "Статус с таким именем уже существует."
 
 #: task_manager/status/views.py:42
 msgid "Status successfully created"
-msgstr "Статус успешно зарегистрирован"
+msgstr "Статус успешно создан"
 
 #: task_manager/status/views.py:69
 msgid "Status successfully updated"

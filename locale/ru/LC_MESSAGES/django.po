@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-22 14:06+0400\n"
+"POT-Creation-Date: 2023-12-03 06:30+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgstr "Метка с таким именем уже существует."
 #: task_manager/label/models.py:18 task_manager/status/models.py:17
 #: task_manager/task/models.py:56 templates/label/index.html:16
 #: templates/status/index.html:16 templates/task/index.html:25
-#: templates/task/read.html:26 templates/user/index.html:13
+#: templates/task/read.html:26 templates/user/index.html:14
 msgid "Created at"
 msgstr "Дата создания"
 
@@ -110,11 +110,11 @@ msgstr "Задача успешно изменена"
 msgid "Task successfully deleted"
 msgstr "Задача успешно удален"
 
-#: task_manager/user/views.py:22
+#: task_manager/user/views.py:23
 msgid "You don't have permition to change other user"
 msgstr "У вас нет разрешения на имзменение другого пользователя"
 
-#: task_manager/user/views.py:49
+#: task_manager/user/views.py:50
 msgid "User is successfully created"
 msgstr "Пользователь успешно зарегистрирован"
 
@@ -138,19 +138,19 @@ msgstr "Вы разлогинены"
 msgid "Task Manager"
 msgstr "Менеджер задач"
 
-#: templates/components/navbar.html:13
+#: templates/components/navbar.html:12
 msgid "Home"
 msgstr "Главная"
 
-#: templates/components/navbar.html:16 templates/user/index.html:7
+#: templates/components/navbar.html:14 templates/user/index.html:7
 msgid "Users"
 msgstr "Пользователи"
 
-#: templates/components/navbar.html:20
+#: templates/components/navbar.html:17
 msgid "Sign In"
 msgstr "Вход"
 
-#: templates/components/navbar.html:23
+#: templates/components/navbar.html:19
 msgid "Sign Up"
 msgstr "Регистрация"
 
@@ -197,14 +197,14 @@ msgstr "Да, удалить"
 #: templates/label/index.html:26 templates/label/update.html:14
 #: templates/status/index.html:26 templates/status/update.html:14
 #: templates/task/index.html:38 templates/task/read.html:41
-#: templates/task/update.html:14 templates/user/index.html:24
-#: templates/user/update.html:7 templates/user/update.html:14
+#: templates/task/update.html:14 templates/user/index.html:27
+#: templates/user/update.html:14
 msgid "Update"
 msgstr "Изменить"
 
 #: templates/label/index.html:28 templates/status/index.html:28
 #: templates/task/index.html:40 templates/task/read.html:43
-#: templates/user/index.html:26
+#: templates/user/index.html:29
 msgid "Delete"
 msgstr "Удалить"
 
@@ -267,11 +267,11 @@ msgstr "Удаление пользователя"
 msgid "Do you want to delete %(first_name)s %(last_name)s?"
 msgstr "Вы уверены, что хотите удалить %(first_name)s %(last_name)s?"
 
-#: templates/user/index.html:11
+#: templates/user/index.html:12
 msgid "User name"
 msgstr "Имя пользователя"
 
-#: templates/user/index.html:12
+#: templates/user/index.html:13
 msgid "Full name"
 msgstr "Полное имя"
 
@@ -282,3 +282,7 @@ msgstr "Вход"
 #: templates/user/login.html:14
 msgid "Log in"
 msgstr "Войти"
+
+#: templates/user/update.html:7
+msgid "Update user"
+msgstr "Изменение пользователя"

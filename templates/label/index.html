@@ -5,10 +5,7 @@
 
 {% block content %}
 <h1>{% translate 'Labels' %}</h1>
-<form class="form" action="{% url 'label_create' %}" method="get">
-		{% translate 'Create label' as button_name %}
-		{% bootstrap_button button_type="submit" content=button_name style='danger' %}
-</form>
+<a class="btn btn-primary" href="{% url 'label_create' %}">{% translate 'Create label' %}</a>
 <table class="table text-white">
 	<tr>
 		<th>ID</th>

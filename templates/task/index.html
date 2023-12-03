@@ -5,10 +5,7 @@
 
 {% block content %}
 <h1>{% translate 'Tasks' %}</h1>
-<form class="form" action="{% url 'task_create' %}" method="get">
-		{% translate 'Create task' as button_name %}
-		{% bootstrap_button button_type="submit" content=button_name style='danger' %}
-</form>
+<a class="btn btn-primary" href="{% url 'task_create' %}">{% translate 'Create task' %}</a>
 <div class="text-start container border rounded p-2">
 	<form class="form m-0" action="" method="get">
 		{{ filter.form.as_p }}

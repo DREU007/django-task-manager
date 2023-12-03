@@ -4,11 +4,8 @@
 {% load i18n %}
 
 {% block content %}
-<h1>{% translate 'Status' %}</h1>
-<form class="form" action="{% url 'status_create' %}" method="get">
-		{% translate 'Create status' as button_name %}
-		{% bootstrap_button button_type="submit" content=button_name style='danger' %}
-</form>
+<h1>{% translate 'Statuses' %}</h1>
+<a class="btn btn-primary" href="{% url 'status_create' %}">{% translate 'Create status' %}</a>
 <table class="table text-white">
 	<tr>
 		<th>ID</th>

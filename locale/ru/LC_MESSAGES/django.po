@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-03 11:41+0400\n"
+"POT-Creation-Date: 2023-12-04 18:55+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,14 +36,14 @@ msgid "Label with such name already exist."
 msgstr "Метка с таким именем уже существует."
 
 #: task_manager/label/models.py:18 task_manager/status/models.py:17
-#: task_manager/task/models.py:56 templates/label/index.html:13
+#: task_manager/task/models.py:60 templates/label/index.html:13
 #: templates/status/index.html:13 templates/task/index.html:22
 #: templates/task/read.html:26 templates/user/index.html:14
 msgid "Created at"
 msgstr "Дата создания"
 
 #: task_manager/label/models.py:22 task_manager/status/models.py:22
-#: task_manager/task/models.py:61
+#: task_manager/task/models.py:65
 msgid "Updated at"
 msgstr "Измененно"
 
@@ -75,18 +75,18 @@ msgstr "Статус успешно изменен"
 msgid "Status successfully deleted"
 msgstr "Статус успешно удален"
 
-#: task_manager/task/filters.py:18 templates/task/index.html:19
-#: templates/task/read.html:22
+#: task_manager/task/filters.py:18 task_manager/task/models.py:41
+#: templates/task/index.html:19 templates/task/read.html:22
 msgid "Status"
 msgstr "Статус"
 
-#: task_manager/task/filters.py:22 templates/task/index.html:21
-#: templates/task/read.html:18
+#: task_manager/task/filters.py:22 task_manager/task/models.py:50
+#: templates/task/index.html:21 templates/task/read.html:18
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: task_manager/task/filters.py:26 templates/task/index.html:20
-#: templates/task/read.html:14
+#: task_manager/task/filters.py:26 task_manager/task/models.py:35
+#: templates/task/index.html:20 templates/task/read.html:14
 msgid "Author"
 msgstr "Автор"
 
@@ -109,6 +109,11 @@ msgstr "Задача с таким именем уже существует."
 #: task_manager/task/models.py:23
 msgid "Description"
 msgstr "Описание"
+
+#: task_manager/task/models.py:56 templates/components/navbar_logged.html:9
+#: templates/label/index.html:7 templates/task/read.html:31
+msgid "Labels"
+msgstr "Метки"
 
 #: task_manager/task/views.py:24
 msgid "You don't have permition to delete the task"
@@ -169,11 +174,6 @@ msgstr "Регистрация"
 #: templates/components/navbar_logged.html:8 templates/status/index.html:7
 msgid "Statuses"
 msgstr "Статусы"
-
-#: templates/components/navbar_logged.html:9 templates/label/index.html:7
-#: templates/task/read.html:31
-msgid "Labels"
-msgstr "Метки"
 
 #: templates/components/navbar_logged.html:10 templates/task/index.html:7
 msgid "Tasks"

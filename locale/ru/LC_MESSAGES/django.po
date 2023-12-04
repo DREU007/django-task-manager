@@ -121,7 +121,7 @@ msgstr "У вас нет разрешения на удаление этой з�
 
 #: task_manager/task/views.py:49
 msgid "Task is successfully created"
-msgstr "Задача успешно cоздана"
+msgstr "Задача успешно создана"
 
 #: task_manager/task/views.py:100
 msgid "Task successfully updated"
@@ -256,7 +256,7 @@ msgstr "Удалить задачу"
 #: templates/task/delete.html:11
 #, python-format
 msgid "Do you want to delete %(task_name)s?"
-msgstr "Вы уверены, что хотите удалить %(status_name)s?"
+msgstr "Вы уверены, что хотите удалить %(task_name)s?"
 
 #: templates/task/read.html:7
 msgid "Task overview"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-04 18:55+0400\n"
+"POT-Creation-Date: 2023-12-04 22:00+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -115,17 +115,21 @@ msgstr "Описание"
 msgid "Labels"
 msgstr "Метки"
 
-#: task_manager/task/views.py:24
+#: task_manager/task/views.py:25
 msgid "You don't have permition to delete the task"
 msgstr "У вас нет разрешения на удаление этой задачи"
 
-#: task_manager/task/views.py:97
+#: task_manager/task/views.py:49
+msgid "Task is successfully created"
+msgstr "Задача успешно cоздана"
+
+#: task_manager/task/views.py:100
 msgid "Task successfully updated"
 msgstr "Задача успешно изменена"
 
-#: task_manager/task/views.py:119
+#: task_manager/task/views.py:122
 msgid "Task successfully deleted"
-msgstr "Задача успешно удален"
+msgstr "Задача успешно удалена"
 
 #: task_manager/user/views.py:23
 msgid "You don't have permition to change other user"

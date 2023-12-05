@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-04 22:00+0400\n"
+"POT-Creation-Date: 2023-12-05 12:03+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,7 +96,7 @@ msgstr "Метка"
 
 #: task_manager/task/filters.py:34
 msgid "Only my tasks"
-msgstr "Мои задачи"
+msgstr "Только свои задачи"
 
 #: task_manager/task/filters.py:40
 msgid "Only tasks for me"
@@ -257,6 +257,10 @@ msgstr "Удалить задачу"
 #, python-format
 msgid "Do you want to delete %(task_name)s?"
 msgstr "Вы уверены, что хотите удалить %(task_name)s?"
+
+#: templates/task/index.html:12
+msgid "Show"
+msgstr "Показать"
 
 #: templates/task/read.html:7
 msgid "Task overview"

@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="text-start">
-	<h1>{% translate 'Update' %}</h1>
+	<h1>{% translate 'Update user' %}</h1>
 	<form action="{% url 'user_update' user_id %}" method="post" class="form">
 		{% csrf_token %}
 

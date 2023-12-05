@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic.edit import UpdateView
 
 from django.contrib import messages
 from django.urls import reverse_lazy
@@ -52,18 +53,19 @@ class UserCreateView(View):
         return render(request, 'user/create.html', {'form': form})
 
 
-class UserUpdateView(LoginRequiredMixin, UserLimitChangeMixin, View):
+class UserUpdateView(LoginRequiredMixin, UserLimitChangeMixin, UpdateView):
     """User update page view."""
     login_url = reverse_lazy('login')
+    template = 'user/update.html'
 
     def get(self, request, *args, **kwargs):
         """Return a user data filled form."""
         user_id = kwargs.get('pk')
         user = get_object_or_404(User, pk=user_id)
-        form = forms.CustomUserChangeForm(user=user, instance=user)
+        form = forms.CustomUserChangeForm(instance=user)
         return render(
             request,
-            'user/update.html',
+            self.template,
             {'form': form, 'user_id': user_id}
         )
 
@@ -71,9 +73,7 @@ class UserUpdateView(LoginRequiredMixin, UserLimitChangeMixin, View):
         """Update a user data."""
         user_id = kwargs.get('pk')
         user = get_object_or_404(User, pk=user_id)
-        form = forms.CustomUserChangeForm(
-            user=user, data=request.POST, instance=user
-        )
+        form = forms.CustomUserChangeForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
             msg_text = _('User is successfully updated')
@@ -81,7 +81,7 @@ class UserUpdateView(LoginRequiredMixin, UserLimitChangeMixin, View):
             return redirect('users_index')
         return render(
             request,
-            'user/update.html',
+            self.template,
             {'form': form, 'user_id': user_id}
         )
 

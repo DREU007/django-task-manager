@@ -82,9 +82,8 @@ class UserRUDTest(TestCase):
                 'username': 'dada',
                 'first_name': 'Dada',
                 'last_name': 'Dadavich',
-                'old_password': 'adminadmin',
-                'new_password1': 'adminadmin',
-                'new_password2': 'adminadmin',
+                'password1': 'adminadmin',
+                'password2': 'adminadmin',
             },
         }
 

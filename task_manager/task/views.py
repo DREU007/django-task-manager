@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import CreateView
 from django.contrib import messages
 from django.utils.translation import gettext as _
@@ -42,9 +43,11 @@ class TaskIndexView(LoginRequiredMixin, View):
         )
 
 
-class TaskCreateView(LoginRequiredMixin, CreateView):
+class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """Task creation view."""
     login_url = 'login'
+    success_message = _('Task is successfully created')
+
     template_name = 'task/create.html'
     model = Task
     fields = [

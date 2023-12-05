@@ -10,12 +10,12 @@ urlpatterns = [
         name='task_read'
     ),
     path(
-        '<int:pk>/update',
+        '<int:pk>/update/',
         views.TaskUpdateView.as_view(),
         name='task_update'
     ),
     path(
-        '<int:pk>/delete',
+        '<int:pk>/delete/',
         views.TaskDeleteView.as_view(),
         name='task_delete'
     ),

@@ -11,33 +11,39 @@ class TaskFilter(django_filters.FilterSet):
     """Set of filters for the Task model."""
     name = django_filters.CharFilter(
         label=_('Name'),
+        label_suffix="",
         field_name="name",
         lookup_expr='icontains',
     )
     status = django_filters.ModelChoiceFilter(
         label=_('Status'),
+        label_suffix="",
         queryset=Status.objects.all(),
     )
     executor = django_filters.ModelChoiceFilter(
         label=_('Executor'),
+        label_suffix="",
         queryset=User.objects.all(),
     )
     author = django_filters.ModelChoiceFilter(
         label=_('Author'),
+        label_suffix="",
         queryset=User.objects.all(),
     )
     labels = django_filters.ModelChoiceFilter(
         label=_('Label'),
-        queryset=Label.objects.all(),
+        label_suffix="", queryset=Label.objects.all(),
     )
     is_author = django_filters.BooleanFilter(
         label=_('Only my tasks'),
+        label_suffix="",
         method='filter_is_author',
         widget=forms.CheckboxInput(),
     )
 
     is_executor = django_filters.BooleanFilter(
         label=_('Only tasks for me'),
+        label_suffix="",
         method='filter_is_executor',
         widget=forms.CheckboxInput(),
     )

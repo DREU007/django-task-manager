@@ -10,11 +10,11 @@
 [TaskManager](https://taskmanager-rd5g.onrender.com/) is a web tool to handle tasks within registered users.
 
 **Features:**
-    * Authorisation system
-    * CRUD implementation for API (REST like) 
-    * Filters for tasks (django-filter)
-    * Front-end via Bootstrap (django-bootstrap)
-    * Multiple language support: English, Russian 
+* Authorisation system
+* CRUD implementation for API (REST like) 
+* Filters for tasks (django-filter)
+* Front-end via Bootstrap (django-bootstrap)
+* Multiple language support: English, Russian 
 
 ### Requirements
 * Python 3.10

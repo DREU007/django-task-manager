@@ -13,8 +13,6 @@ jobs:
 #       matrix:
 #         # we want to test our package on several versions of Python
 #         python-version: [3.10.*]
-    env:
-      # test
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}

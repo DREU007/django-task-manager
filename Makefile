@@ -59,4 +59,4 @@ lint:
 
 .PHONY: test-coverage
 test-coverage:
-	poetry run coverage --source='.' manage.py test
+	poetry run coverage run --source='.' manage.py test

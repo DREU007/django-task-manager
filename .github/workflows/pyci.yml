@@ -27,6 +27,8 @@ jobs:
           make install
       - name: Setup enviroment
         run: make setup
+        env:
+          DB_ENGINE: ${{ secrets.DB_ENGINE }}
       - name: Run linter
         run: make lint
       - name: Test & publish code coverage

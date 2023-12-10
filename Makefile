@@ -56,3 +56,7 @@ compilemessages:
 .PHONY: lint
 lint:
 	poetry run flake8 task_manager --exclude migrations
+
+.PHONY: test-coverage
+test-coverage:
+	poetry run coverage --source='.' manage.py test

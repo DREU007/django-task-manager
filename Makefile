@@ -1,4 +1,6 @@
-include .env
+ifneq (,$(wildcard .env))
+	include .env
+endif
 
 HOST ?= 127.0.0.1
 PORT ?= 8000

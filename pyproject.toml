@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "hexlet-code"
-version = "0.1.0"
-description = "Task manager - web tool for task managment between co-workers."
+version = "1.0.0"
+description = "Task manager - a web tool to handle tasks within registered users."
 authors = ["DREU007 <dreu007@gmail.com>"]
 readme = "README.md"
 packages = [{include = "task_manager"}]

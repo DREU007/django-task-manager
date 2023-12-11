@@ -2,6 +2,7 @@
 [![Actions Status](https://github.com/DREU007/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/DREU007/python-project-52/actions)
 [![Python CI](https://github.com/DREU007/django-task-manager/actions/workflows/pyci.yml/badge.svg)](https://github.com/DREU007/django-task-manager/actions/workflows/pyci.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/242cfd0f231f818c6852/maintainability)](https://codeclimate.com/github/DREU007/python-project-52/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/242cfd0f231f818c6852/test_coverage)](https://codeclimate.com/github/DREU007/python-project-52/test_coverage)
 
 
 ### Showcase

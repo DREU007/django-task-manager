@@ -36,10 +36,6 @@ dev:
 shell:
 	$(MANAGE) shell_plus
 
-.PHONY: test
-test:
-	$(MANAGE) test
-
 .PHONY: coverage
 coverage:
 	poetry run coverage run manage.py test task_manager/user -v 2
@@ -57,6 +53,10 @@ compilemessages:
 lint:
 	poetry run flake8 task_manager --exclude migrations
 
+.PHONY: test
+test:
+	poetry run coverage run --source='.' manage.py test
+
 .PHONY: test-coverage
 test-coverage:
-	poetry run coverage run --source='.' manage.py test
+	poetry run coverage xml	

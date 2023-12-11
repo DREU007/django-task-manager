@@ -25,10 +25,12 @@ jobs:
         run: |
           pip install poetry
           make install
-      - name: Setup enviroment
-        run: make setup
+      - name: Run test        
+        run: |
+          make test
         env:
           DB_ENGINE: ${{ secrets.DB_ENGINE }}
+          SECRET: secret
       - name: Run linter
         run: make lint
       - name: Test & publish code coverage

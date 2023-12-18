@@ -15,6 +15,7 @@ install:
 
 .PHONY: setup
 setup:	install migrate
+	$(MANAGE) collectstatic --no-input
 
 .PHONY: migrate
 migrate:
